@@ -1,53 +1,329 @@
+<form [formGroup]="form">
   <mat-accordion multi>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-          <fa-duotone-icon fxFlex="40px"
-            [icon]="faInfo"
-            size="lg" 
-            primaryColor="#3f51b5"
-            primaryOpacity = ".8"
-            secondaryColor="#3f51b5"
-            secondaryOpacity = ".8">
-          </fa-duotone-icon>
-          <div fxFlex>General Equipment Information</div>
+        <fa-duotone-icon fxFlex="40px" [icon]="faInfo" size="lg" primaryColor="#3f51b5" primaryOpacity=".8"
+          secondaryColor="#3f51b5" secondaryOpacity=".8">
+        </fa-duotone-icon>
+        <div fxFlex>General Equipment Information</div>
       </mat-expansion-panel-header>
       <div class="section-form">
-        <app-general-form></app-general-form>
+        <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="20px">
+          <mat-form-field required>
+            <mat-label>ID</mat-label>
+            <input autocomplete="off" matInput placeholder="Enter equipment ID" formControlName="equipment_id">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Department Owner</mat-label>
+            <input autocomplete="off" matInput placeholder="Enter department owner" formControlName="department_owner">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Manufacturer</mat-label>
+            <input autocomplete="off" matInput placeholder="Enter manufacturer name" formControlName="manufacturer_id">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Model</mat-label>
+            <input autocomplete="off" matInput placeholder="Enter model number" formControlName="manufacturer_id">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Enter equipment description"></textarea>
+          </mat-form-field>
+        </div>
       </div>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-          <fa-duotone-icon fxFlex="40px"
-            [icon]="faClipoardList"
-            size="lg" 
-            primaryColor="#333"
-            primaryOpacity = "1"
-            secondaryColor="green"
-            secondaryOpacity = ".6">
-          </fa-duotone-icon>
-          <div fxFlex>Asset Information</div>
+        <fa-duotone-icon fxFlex="40px" [icon]="faClipoardList" size="lg" primaryColor="#333" primaryOpacity="1"
+          secondaryColor="green" secondaryOpacity=".6">
+        </fa-duotone-icon>
+        <div fxFlex>Asset Information</div>
       </mat-expansion-panel-header>
       <div class="section-form">
-        <app-asset-form></app-asset-form>
+        <div formGroupName="asset" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+          <mat-form-field>
+            <mat-label>UNSPSC Code</mat-label>
+            <input autocomplete="off" formControlName="unspsc_code" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>UNSPSC Title</mat-label>
+            <input autocomplete="off" formControlName="unspsc_title" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Current Building Location</mat-label>
+            <input autocomplete="off" formControlName="equipment_current_building_location" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="">
+            <mat-label>Acquisition Date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="acquisition_date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <!-- Age in years: {{}} -->
+
+          <mat-form-field>
+            <mat-label>Acquisition value</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="acquisition_value" matInput placeholder="">
+            <fa-duotone-icon matSuffix [icon]="faDollarSign">
+            </fa-duotone-icon>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Amortization Period </mat-label>
+            <input autocomplete="off" numbersOnly formControlName="accumulated_amortization" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint>Typically 12 years</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Current Value</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="current_value" matInput placeholder="">
+            <fa-duotone-icon matSuffix [icon]="faDollarSign" primaryColor="gray" primaryOpacity="1" secondaryOpacity="1"
+              secondaryColor="gray">
+            </fa-duotone-icon>
+            <mat-hint>Depreciated value</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Replacement Cost</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="replacement_cost" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Relocation Cost</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="relocation_cost" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Available Redundancy</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="available_redundancy" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Core to Capability</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="core_to_capability" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <mat-label>Core to Capability</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="core_to_capability" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Kept for spare parts?</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="is_kept_for_spare_parts" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Maximum Out Of Service Time</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="maximum_out_of_service_time" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Maximum Out Of Service Time</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="maximum_out_of_service_time" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <!-- <mat-form-field>
+            <mat-label>Estimated Remaining Useful Life</mat-label>
+            <input autocomplete="off"
+              numbersOnly
+              formControlName="estimated_remaining_useful_life"  
+              matInput 
+              placeholder="" >
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field> -->
+
+          <mat-form-field>
+            <mat-label>End of Ability to Service</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="is_end_of_service" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Cost to Keep Running</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="cost_to_keep_running" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Can be Relocated</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="can_be_relocated" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Asset Decision</mat-label>
+            <input autocomplete="off" numbersOnly formControlName="asset_decision" matInput placeholder="">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <!-- <mat-form-field>
+            <mat-label>Department Asset Code</mat-label>
+            <input autocomplete="off"
+              numbersOnly
+              formControlName="department_asset_code"  
+              matInput 
+              placeholder="" >
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field> -->
+        </div>
       </div>
     </mat-expansion-panel>
 
-        <mat-expansion-panel>
+    <mat-expansion-panel>
       <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-          <fa-duotone-icon fxFlex="40px"
-            [icon]="faPencilRuler"
-            size="lg" 
-            primaryColor="purple"
-            primaryOpacity = ".7"
-            secondaryColor="black"
-            secondaryOpacity = ".8">
-          </fa-duotone-icon>
-          <div fxFlex>Dimensional Information and Location Considerations</div>
+        <fa-duotone-icon fxFlex="40px" [icon]="faPencilRuler" size="lg" primaryColor="purple" primaryOpacity=".7"
+          secondaryColor="black" secondaryOpacity=".8">
+        </fa-duotone-icon>
+        <div fxFlex>Dimensional Information and Location Considerations</div>
       </mat-expansion-panel-header>
-      <div class="section-form">
-        <app-dimensional-form></app-dimensional-form>
+      <div  class="section-form">
+        <div formGroupName="dimensional" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+          <mat-form-field>
+            <mat-label>Height</mat-label>
+            <input autocomplete="off" numbersOnly matInput placeholder="Enter in metric" formControlName="height">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Width</mat-label>
+            <input autocomplete="off" numbersOnly matInput placeholder="Enter in metric" formControlName="width">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Depth</mat-label>
+            <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="depth">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Weight</mat-label>
+            <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="weight">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Amount of Bench Space Required Adjacent to Equipment
+            </mat-label>
+            <input autocomplete="off" numbersOnly matInput
+              placeholder="Enter bench space required adjacent to equipment " formControlName="bench_spacing">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+          <!-- <mat-checkbox>Is Stand Alone</mat-checkbox> -->
+          <label id="Is stand alone?">Is it a stand alone piece of equipment? </label>
+          <mat-radio-group formControlName="is_stand_alone" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is stand alone?">Can the equipment be relocated? (Y/N)
+          </label>
+          <mat-radio-group formControlName="is_relocatable" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is stand alone?">Clean or Dirty</label>
+          <mat-radio-group formControlName="is_clean" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is ">Humidity Sensitive</label>
+          <mat-radio-group formControlName="is_humidity_sensitive" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is static sensitive?">Static Sensitive</label>
+          <mat-radio-group formControlName="is_static_sensitive" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is stand alone?">Light Sensitive</label>
+          <mat-radio-group formControlName="is_light_sensitive" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is">Noise Sensitive</label>
+          <mat-radio-group formControlName="is_noise_sensitive" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is">Air Pressure or Flow Sensitive</label>
+          <mat-radio-group formControlName="is_air_pressure_sensitive" class="radio-group"
+            aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is">Vibration Sensitive</label>
+          <mat-radio-group formControlName="is_vibration_sensitive" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+
+          <label id="Is">Floor/Bench</label>
+          <mat-radio-group formControlName="is_floor_bench" class="radio-group" aria-label="Select the answer">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </div>
     </mat-expansion-panel>
 
@@ -57,11 +333,20 @@
   </mat-accordion>
   <br><br>
 
+  <button mat-fab (click)="AddEquipment()" color="primary" aria-label="Example icon button with a delete icon"
+    class="float">
+    <fa-duotone-icon [icon]="faSave" size="2x" primaryColor="white" primaryOpacity="1" secondaryColor="green"
+      secondaryOpacity=".8">
+    </fa-duotone-icon>
+  </button>
+
+  {{this.form.value | json}}
+</form>
 
 
 
 
-  
+
 
 
 

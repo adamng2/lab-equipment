@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import { EquipmentService } from '../_services/equipment.service';
 import { LOCALE_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faClipboard,faSave, faClipboardList, faInfo, faInfoCircle, faInfoSquare, faPen, faPencilRuler, faRulerCombined } from '@fortawesome/pro-duotone-svg-icons';
+import { faClipboard,faSave, faClipboardList, faInfo, faInfoCircle, faInfoSquare, faPen, faPencilRuler, faRulerCombined, faDollarSign } from '@fortawesome/pro-duotone-svg-icons';
 
 
 @Component({
@@ -14,7 +14,6 @@ import { faClipboard,faSave, faClipboardList, faInfo, faInfoCircle, faInfoSquare
 export class EquipmentFormComponent implements OnInit {
 
   form: any;
-  form2: any;
 
   private sub: any;
   
@@ -24,6 +23,7 @@ export class EquipmentFormComponent implements OnInit {
   faClipoardList = faClipboardList;
   faSave = faSave;
   faPencilRuler = faPencilRuler;
+  faDollarSign = faDollarSign;
 
   faRulerCombined = faRulerCombined;
   
@@ -34,11 +34,16 @@ export class EquipmentFormComponent implements OnInit {
     private router: Router,    
     private equipmentService: EquipmentService) {
 
-    this.form = this.formControls; 
+      this.form = this.mainControls;
+      this.form.addControl("asset", this.assetControls);
+      this.form.addControl("dimensional", this.dimensionalControls);
+
+   // this.form = this.formControls; 
 
   }
 
   ngOnInit(): void {
+
   }
 
   ngOnDestroy() {
@@ -46,7 +51,7 @@ export class EquipmentFormComponent implements OnInit {
     //   this.sub.unsubscribe();
   }
 
-  get formControls(){
+   get mainControls(){
     return this.formBuilder.group({
       equipment_id:  [null, Validators.required],
       department_owner: [null ],
@@ -56,10 +61,61 @@ export class EquipmentFormComponent implements OnInit {
     });
   }
 
+  get assetControls(){
+    return this.formBuilder.group({
+      unspsc_code:  [null],
+      unspsc_title: [null ],
+      equipment_current_building_location: [null],
+      acquisition_date: [null],
+      acquisition_value: [null],
+      accumulated_amortization: [null],
+      current_value: [null],
+      replacement_cost: [null],
+      relocation_cost: [null],
+      available_redundancy: [null],
+      core_to_capability: [null],
+      is_obsolete: [null],
+      is_kept_for_spare_parts: [null],
+      maximum_out_of_service_time: [null],
+    //  estimated_remaining_useful_life: [null],
+      is_end_of_service: [null],
+      cost_to_keep_running: [null],
+      can_be_relocated: [null],
+      asset_decision: [null]
+    });
+  }
+
+  get dimensionalControls(){
+    return this.formBuilder.group({
+      height: [null],
+      width: [null ],
+      depth: [null ],
+      bench_spacing: [null],
+  
+      is_stand_alone: [null],
+      is_relocatable: [null],
+      weight: [null],
+  
+      is_clean: [null ],
+      is_humidity_sensitive: [null ],
+      is_static_sensitive: [null ],
+      is_light_sensitive: [null ],
+      is_noise_sensitive: [null ],
+      is_air_pressure_sensitive: [null ],
+      is_vibration_sensitive: [null ],
+      is_floor_bench: [null ]
+    });
+
+  }
+
+
+
+
+
   // This form does not require a user to be logged in
   AddEquipment(){
 
-
+    console.log("Adding: " + JSON.stringify(this.form.value));
     if(this.form.valid){
       // let shipment: Shipment = this.form.value;
       //Parse date in accepted format

@@ -52,11 +52,7 @@ import { EquipmentsGridComponent } from './equipments-grid/equipments-grid.compo
 import { HomeComponent } from './home/home.component';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { FlatTreeComponent } from './flat-tree/flat-tree.component';
-import { AssetFormComponent } from './_forms/asset-form/asset-form.component';
-import { ElectricalFormComponent } from './_forms/electrical-form/electrical-form.component';
-import { GeneralFormComponent } from './_forms/general-form/general-form.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { DimensionalFormComponent } from './_forms/dimensional-form/dimensional-form.component';
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -83,7 +79,6 @@ export class PickDateAdapter extends NativeDateAdapter {
 const appRoutes: Routes = [
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
-  { path: 'asset', component: AssetFormComponent },
   { path: 'home', component: HomeComponent },
   
   // { path: 'link', 
@@ -111,11 +106,7 @@ const appRoutes: Routes = [
     EquipmentsGridComponent,
     HomeComponent,
     EquipmentListComponent,
-    FlatTreeComponent,
-    AssetFormComponent,
-    ElectricalFormComponent,
-    GeneralFormComponent,
-    DimensionalFormComponent
+    FlatTreeComponent
   ],
   imports: [
     BrowserModule,
