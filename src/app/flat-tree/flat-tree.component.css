@@ -1,0 +1,14 @@
+.btn-icon{
+    display: inline-block;
+    min-width: 12px;
+    max-width: 12px;
+    font-size: 10px;
+    color: #3f51b5; 
+    /* vertical-align: inherit; */
+}
+
+.content{
+    padding-left: 40px;
+} 
+
+

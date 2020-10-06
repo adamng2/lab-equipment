@@ -1,0 +1,31 @@
+
+
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
+    <button mat-raised-button routerLink="/equipment" >
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <div class="button-wrapper">
+          <fa-duotone-icon 
+            [icon]="faPlus" 
+            size="3x" 
+            primaryColor="#3f51b5" 
+            secondaryOpacity="0.5" >
+          </fa-duotone-icon>
+        </div>
+        <div>Add Equipment</div>
+      </div>
+    </button>
+    <button mat-raised-button routerLink="/equipments">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <div class="button-wrapper">
+        <fa-duotone-icon 
+          [icon]="faSearch" 
+          size="3x" 
+          secondaryColor="green" >
+        </fa-duotone-icon>
+      </div>
+        <div>Find Equipment</div>
+      </div>
+    </button>
+
+   
+</div>

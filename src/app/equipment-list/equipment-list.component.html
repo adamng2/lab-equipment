@@ -1,0 +1,97 @@
+<div *ngFor="let eq  of equipments">
+  <mat-card class="card">
+    <mat-card-header>
+      <fa-duotone-icon mat-card-avatar
+      [icon]="faCircle"
+      primaryColor="#fff"
+      primaryOpacity=".5"
+      secondaryColor="#ccc"
+      secondaryOpacity=".5" 
+      size="3x">
+    </fa-duotone-icon>
+      <mat-card-title>{{eq.asset.unspsc_title}}</mat-card-title>
+      <mat-card-subtitle><span class="badge">CODE</span> {{eq.asset.unspsc_code}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <p>
+      {{eq.equipment_description}}
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="20px">
+        <button mat-mini-fab class="button">
+          <fa-duotone-icon 
+          [icon]="faPencilRuler"
+          primaryColor="#ccc"
+          primaryOpacity=".5"
+          secondaryColor="#ccc"
+          secondaryOpacity=".5" 
+          size="lg">
+          </fa-duotone-icon>
+        </button>
+  
+      <button mat-mini-fab class="button" >
+        <fa-duotone-icon 
+          [icon]="faCogs"
+          primaryColor="#ccc"
+          primaryOpacity=".5"
+          secondaryColor="#ccc"
+          secondaryOpacity=".5" 
+          size="lg">
+        </fa-duotone-icon>
+      </button>
+  
+      <button mat-mini-fab class="button">
+        <fa-duotone-icon 
+          [icon]="faBolt"
+          primaryColor="#ccc"
+          primaryOpacity=".666"
+          secondaryColor="#ccc"
+          secondaryOpacity=".666"
+          size="lg">
+        </fa-duotone-icon>
+      </button>
+      </div>
+
+<!-- 
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button> -->
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+<!-- 
+<mat-form-field style="width: 100%">
+  <mat-label>
+    Search...
+  </mat-label>
+  <input matInput (keyup)="onQuickFilterChanged($event)">
+  <fa-icon matSuffix [icon]="faSearch" size="lg" style="color: #ccc"></fa-icon>
+</mat-form-field>
+
+<cdk-virtual-scroll-viewport itemSize="120" class="viewport">
+  <div *cdkVirtualFor="let item of equipments" class="item">
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <div fxLayout="column" fxLayoutAlign="space-around start" style="width:200px" >
+        <span class="header">TITLE</span>
+        <span class="text">{{item.asset.unspsc_title}}</span>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="space-around start" style="width:200px" >
+        <span class="header">BUILDING</span>
+        <span class="text">{{item.asset.equipment_current_building_location}}</span>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="space-around start" style="width:250px" >
+        <span class="header">OWNER</span>
+        <span class="text">{{item.department_owner}}</span>
+      </div>
+  </div>
+  <div style="height:10px; font-size: 13px; color:#ccc"></div>
+  <div style="font-size: 13px; color:#666">
+    {{item.equipment_description}}
+  </div>
+</div>
+</cdk-virtual-scroll-viewport> -->

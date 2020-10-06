@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" class="container">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" >
+      <!-- <h1 style="padding-right: 10px;">Requisitions </h1> -->
+      <mat-form-field style="width: 40%">
+        <mat-label>
+          Find...
+        </mat-label>
+        <input matInput (keyup)="onQuickFilterChanged($event)">
+        <fa-icon matSuffix [icon]="faSearch" size="lg" style="color: #ccc"></fa-icon>
+      </mat-form-field>
+      
+      <mat-form-field style="width: 40%" >
+        <mat-label>Show/hide...</mat-label>
+        <mat-select 
+        (ngModelChange)="columGroupsChanged($event)"
+          [(ngModel)]="selectedColumnGroups" multiple>
+          <mat-option *ngFor="let group of columnGroups" 
+            [value]="group.id">{{group.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+<!-- 
+    {{selectedColumnGroups}} -->
+
+    <!--  -->
+    <ag-grid-angular 
+      ag-grid-resize 
+      class="ag-theme-alpine" 
+      [floatingFilter]="false"
+      [gridOptions]="gridOptions" 
+      [defaultColDef]="defaultColDef" 
+      [columnDefs]="columnDefs" 
+      [rowData]="rowData"
+      (gridReady)="onGridReady($event)" 
+      [animateRows]="true"
+      [enableCellChangeFlash]="true" 
+      [frameworkComponents]="frameworkComponents"
+      [modules]="modules" >
+    </ag-grid-angular>
+  </div>
+
+  <!-- 
+   (cellDoubleClicked)="onRowDoubleClicked($event)" 
+         [enableCharts]="true"
+      [masterDetail]="true"
+          [enableRangeSelection]="true"
+
+   -->

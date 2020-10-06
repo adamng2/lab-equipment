@@ -1,0 +1,88 @@
+  <mat-accordion multi>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
+          <fa-duotone-icon fxFlex="40px"
+            [icon]="faInfo"
+            size="lg" 
+            primaryColor="#3f51b5"
+            primaryOpacity = ".8"
+            secondaryColor="#3f51b5"
+            secondaryOpacity = ".8">
+          </fa-duotone-icon>
+          <div fxFlex>General Equipment Information</div>
+      </mat-expansion-panel-header>
+      <div class="section-form">
+        <app-general-form></app-general-form>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
+          <fa-duotone-icon fxFlex="40px"
+            [icon]="faClipoardList"
+            size="lg" 
+            primaryColor="#333"
+            primaryOpacity = "1"
+            secondaryColor="green"
+            secondaryOpacity = ".6">
+          </fa-duotone-icon>
+          <div fxFlex>Asset Information</div>
+      </mat-expansion-panel-header>
+      <div class="section-form">
+        <app-asset-form></app-asset-form>
+      </div>
+    </mat-expansion-panel>
+
+        <mat-expansion-panel>
+      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
+          <fa-duotone-icon fxFlex="40px"
+            [icon]="faPencilRuler"
+            size="lg" 
+            primaryColor="purple"
+            primaryOpacity = ".7"
+            secondaryColor="black"
+            secondaryOpacity = ".8">
+          </fa-duotone-icon>
+          <div fxFlex>Dimensional Information and Location Considerations</div>
+      </mat-expansion-panel-header>
+      <div class="section-form">
+        <app-dimensional-form></app-dimensional-form>
+      </div>
+    </mat-expansion-panel>
+
+
+
+
+  </mat-accordion>
+  <br><br>
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- <mat-card class="card">
+  <mat-card-header>
+      <fa-icon mat-card-avatar class="gray"
+        [icon]="faTools" size="3x">
+    </fa-icon>
+    <mat-card-title>New Equipment</mat-card-title>
+    <mat-card-subtitle>Add new equipment</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <mat-card-content>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card> -->

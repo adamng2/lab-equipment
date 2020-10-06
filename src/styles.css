@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css";
+@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-alpine.css";
+
+html, body { height: 100%; }
+body { margin: 0; background-color: #f1f1f1; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.full-width-button{
+    width: 100%;
+}
+
+.radio-group 
+{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+.mat-radio-button 
+{
+    margin: 5px;
+}
+
+.ag-theme-balham .selected {
+    background-color: lightcoral !important;
+  }
+  
+  .my-ag-column-green{
+    background-color: #4CAF50;
+    color: white;
+  }
+  .my-ag-column-orange{
+    background-color:  #FFC300;
+    color: white;
+  }
+  .my-ag-column-lightblue{
+    background-color: #85C1E9;
+    color: black;
+  }
+  .my-ag-column-indigo{
+    background-color: #3F51B5;
+    color: white;
+  }
+  .my-ag-column-bloodorange{
+    background-color: #FF5733 ;
+    color: white;
+  }
+  .my-ag-column-lightgray{
+    background-color: #F0F3F4 ;
+    color: black;
+  }
+  .my-ag-column-bluegray{
+    background-color: #607D8B ;
+    color: black;
+  }
+  .my-ag-column-yellow{
+    background-color: #FFEB3B ;
+    color: black;
+  }
+  .my-ag-column-teal{
+    background-color: #009688 ;
+    color: black;
+  }
+  .my-ag-column-purple{
+    background-color: #9C27B0 ;
+    color: black;
+  }
+  
+  .my-ag-column-dark{
+    border: 0;
+    background-color: #666;
+    color: whitesmoke;
+  }
+
+  .badge {
+    margin-bottom: 3px;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    /*color: rgba(0,0,0, .67);*/
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    /* background-color: #5fba7d; */
+    background-color: #EEE; 
+    border-radius: 5px;
+}

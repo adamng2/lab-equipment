@@ -1,0 +1,27 @@
+button{
+    width: 260px;
+    height: 290px;
+    font-size: 22px;
+    color: rgba(0, 0, 0, .75);
+    font-weight: 500;
+}
+
+.button-wrapper{
+    background-color: #f1f1f1;
+    /* border: 1px solid #ccc;  */
+    border-radius: 50%; 
+    padding: 20px; 
+    width: 66px; 
+    height: 66px;
+
+}
+
+button:hover{
+    -webkit-box-shadow: 4px 4px 1px 0px rgba(204,204,204,1);
+    -moz-box-shadow: 4px 4px 1px 0px rgba(204,204,204,1);
+    box-shadow: 4px 4px 1px 0px rgba(204,204,204,1);
+}
+
+.gray{
+    color: #ccc;
+}

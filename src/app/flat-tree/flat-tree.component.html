@@ -1,0 +1,18 @@
+<button mat-button type="button" (click)="opened = !opened" color="default">
+  <div class="btn-icon">
+    <fa-icon [icon]="opened? faChevronDown:faChevronRight"></fa-icon>
+  </div>
+  {{name}}
+  <!-- <span class="badge">{{strings.length}}</span> -->
+</button>
+<div class="content">
+  <ng-content *ngIf="opened" select="content">
+
+
+  </ng-content>
+</div>
+<!-- <mat-list *ngIf="opened" style="font-size: 13px; color: #333" dense>
+    <mat-list-item *ngFor="let str of strings">
+        {{str}}
+    </mat-list-item>
+</mat-list> -->

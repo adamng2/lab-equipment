@@ -1,0 +1,27 @@
+
+<br>
+<div class="content">
+  <h1 i18n>Login</h1>
+
+  <form [formGroup]="form">
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" autocomplete="off" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" autocomplete="off" matInput>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" style="width: 100%" [disabled]="!form.valid"
+    (click)="login()">Ok</button>
+    <!-- {{form.value | json}} -->
+  </form>
+
+  <br>
+  <div *ngIf="hasErrors==true" class="alert alert-danger">
+    {{errorMessage}}
+  </div>
+</div>

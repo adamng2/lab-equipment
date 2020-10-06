@@ -1,0 +1,11 @@
+<h1 mat-dialog-title >Email the following link to the recipient</h1>
+<div mat-dialog-content>
+  <p>{{formLink}}</p>
+</div>
+<!-- <div mat-dialog-actions> -->
+  <br>
+  <div fxLayout="row" fxLayoutAlign="space-between none">
+    <a mat-button color="primary" cdkFocusInitial [href]="mailTo">Open in Outlook</a>
+    <button mat-raised-button color="warn" [mat-dialog-close]="" >Close</button>
+  </div>
+<!-- </div> -->
