@@ -1,0 +1,17 @@
+table {
+    width: 100%
+}
+
+
+
+.mat-column-date{
+    width: 10%
+}
+
+.mat-column-action{
+    width: 5%
+}
+
+.mat-column-field{
+    width: 15%
+}

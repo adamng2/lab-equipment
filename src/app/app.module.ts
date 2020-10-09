@@ -31,8 +31,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatOptionModule, MatNativeDateModule, MatRippleModule, MAT_DATE_FORMATS, DateAdapter, NativeDateAdapter, } from '@angular/material/core';
+import { MatOptionModule, MatNativeDateModule, MatRippleModule, MAT_DATE_FORMATS, DateAdapter, NativeDateAdapter } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -53,6 +54,7 @@ import { HomeComponent } from './home/home.component';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { FlatTreeComponent } from './flat-tree/flat-tree.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { RevisionListComponent } from './revision-list/revision-list.component';
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -80,6 +82,7 @@ const appRoutes: Routes = [
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
   { path: 'equipment/:id', component: EquipmentFormComponent },
+  { path: 'equipment/:id/revisions', component: RevisionListComponent },
   { path: 'home', component: HomeComponent },
   
   // { path: 'link', 
@@ -107,7 +110,8 @@ const appRoutes: Routes = [
     EquipmentsGridComponent,
     HomeComponent,
     EquipmentListComponent,
-    FlatTreeComponent
+    FlatTreeComponent,
+    RevisionListComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +139,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatRadioModule,
     MatOptionModule,
+    MatPaginatorModule,
     MatSelectModule,
     MatStepperModule,
     MatListModule,
