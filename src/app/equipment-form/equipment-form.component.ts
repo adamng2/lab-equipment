@@ -2,8 +2,28 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { EquipmentService } from '../_services/equipment.service';
 import { LOCALE_ID } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faClipboard,faSave, faClipboardList, faInfo, faInfoCircle, faInfoSquare, faPen, faPencilRuler, faRulerCombined, faDollarSign } from '@fortawesome/pro-duotone-svg-icons';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+
+import { faClipboard, 
+  faSave, 
+  faClipboardList, 
+  faInfo, 
+  faInfoCircle, 
+  faInfoSquare, 
+  faPen, 
+  faPencilRuler, 
+  faRulerCombined, 
+  faDollarSign, 
+  faBolt } from '@fortawesome/pro-duotone-svg-icons';
+
+import { Equipment } from '../_model/equipment';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 
 
 @Component({
@@ -14,35 +34,46 @@ import { faClipboard,faSave, faClipboardList, faInfo, faInfoCircle, faInfoSquare
 export class EquipmentFormComponent implements OnInit {
 
   form: any;
+  existingEquipmentId = -1; // -1 not existing
 
-  private sub: any;
   
+  // icons
   faInfo = faInfo;
+  faBolt = faBolt;
   faInfoCircle = faInfoCircle;
   faClipoard = faClipboard;
   faClipoardList = faClipboardList;
   faSave = faSave;
   faPencilRuler = faPencilRuler;
   faDollarSign = faDollarSign;
-
   faRulerCombined = faRulerCombined;
   
   
   constructor(private formBuilder: FormBuilder,
-    @Inject(LOCALE_ID) private locale: string, 
+    @Inject(LOCALE_ID) private locale: string,
+    public dialog: MatDialog, 
     private route: ActivatedRoute,
     private router: Router,    
     private equipmentService: EquipmentService) {
-
-      this.form = this.mainControls;
-      this.form.addControl("asset", this.assetControls);
-      this.form.addControl("dimensional", this.dimensionalControls);
-
-   // this.form = this.formControls; 
-
   }
 
   ngOnInit(): void {
+    
+    this.form = this.mainControls;
+    this.form.addControl("asset", this.assetControls);
+    this.form.addControl("dimensional", this.dimensionalControls);
+
+
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        const id = this.existingEquipmentId = +params['id'];
+        //this.navigated = true;
+        this.equipmentService.getEquipment(id).subscribe( result => {
+          console.log( "EXISTING "  + this.existingEquipmentId );
+          this.form.patchValue(result);
+        });
+      }
+    });
 
   }
 
@@ -103,36 +134,44 @@ export class EquipmentFormComponent implements OnInit {
       is_noise_sensitive: [null ],
       is_air_pressure_sensitive: [null ],
       is_vibration_sensitive: [null ],
-      is_floor_bench: [null ]
+      is_floor_or_bench: [null ]
     });
 
   }
 
-
-
-
-
-  // This form does not require a user to be logged in
-  AddEquipment(){
-
-    console.log("Adding: " + JSON.stringify(this.form.value));
+  // Save equipment, new or update
+  Save(){
+    let tempEquipment: Equipment = this.form.value;
+    console.log(tempEquipment);
     if(this.form.valid){
-      // let shipment: Shipment = this.form.value;
-      //Parse date in accepted format
       // shipment.expiry_date = formatDate(shipment.expiry_date,'yyyy-MM-dd', this.locale);
-      // shipment.manufactured_date =  formatDate(shipment.manufactured_date,'yyyy-MM-dd', this.locale);
-      console.log(this.form.value);
-      this.sub = this.equipmentService.postEquipment(this.form.value)
+      this.equipmentService.saveEquipment(tempEquipment, this.existingEquipmentId)
       .subscribe( (result: any) =>
       {
-        console.log( result);
-        this.router.navigateByUrl('saved');
+        console.log(result);
+        this.openDialog( result.data.id );
+        //this.router.navigateByUrl('equipments/' + result.data);
       },
       error => {
         console.error( error );
         //service call failed, reset
       });
     }
+  }
+
+  openDialog(id: number): void {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '400px',
+      data:  { 
+          id: id
+      },
+      // disableClose: true,
+      position: { top: "100px"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigateByUrl('equipment/' + id);
+    });
   }
 
 }

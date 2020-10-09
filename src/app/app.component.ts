@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
-import { faTractor, faWarehouse } from '@fortawesome/pro-duotone-svg-icons';
+import { faSearch, faWarehouse, faPlus, faUser } from '@fortawesome/pro-duotone-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +10,12 @@ import { faTractor, faWarehouse } from '@fortawesome/pro-duotone-svg-icons';
 })
 export class AppComponent {
   
-  faTractor = faTractor;
+  faUser = faUser;
+  faPlus = faPlus;
+  faSearch = faSearch;
   faWarehouse = faWarehouse;
   
-  title = 'info-collector';
+  title = 'lab-equipment';
   hasToken: boolean;
 
   constructor(public authService: AuthService,

@@ -1,5 +1,5 @@
 export interface Asset {
-  
+
   unspsc_code: string;
   unspsc_title: string;
   equipment_current_building_location: string;
@@ -19,7 +19,7 @@ export interface Asset {
   is_kept_for_spare_parts: number;
 
   maximum_out_of_service_time: number;
- // estimated_remaining_useful_life: string;
+  // estimated_remaining_useful_life: string;
   relocation_out_of_service_time: number;
 
   is_end_of_service: number;
@@ -29,5 +29,4 @@ export interface Asset {
   asset_decision: string;
 
   department_asset_code: string;
-
-  }
+}

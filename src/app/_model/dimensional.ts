@@ -3,7 +3,7 @@ export interface Dimensional {
     depth: number;
     height: number;
 
-    bench_spacing: string;
+    bench_spacing: number;
     is_stand_alone: number;
     is_relocatable: number;
     weight: number;

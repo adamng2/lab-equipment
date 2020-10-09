@@ -2,6 +2,8 @@ import { Asset } from "./asset";
 import { Dimensional } from "./dimensional";
 
 export class Equipment {
+
+  id: number;
   //base
   equipment_id: string;
 

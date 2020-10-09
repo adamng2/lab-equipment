@@ -4,6 +4,17 @@
     margin-right: 30px;
 }
 
+
+.icon{
+    background-color: #eee;
+    min-width: 35px;
+    height: 28px;
+    text-align: center;
+    padding-top: 8px;
+    border-radius: 50%;
+}
+
+
 .float{
     position: fixed;
     bottom: 20px;

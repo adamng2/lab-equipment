@@ -79,6 +79,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 const appRoutes: Routes = [
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
+  { path: 'equipment/:id', component: EquipmentFormComponent },
   { path: 'home', component: HomeComponent },
   
   // { path: 'link', 

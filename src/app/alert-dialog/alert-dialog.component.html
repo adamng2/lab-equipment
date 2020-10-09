@@ -1,11 +1,17 @@
-<h1 mat-dialog-title >Email the following link to the recipient</h1>
-<div mat-dialog-content>
-  <p>{{formLink}}</p>
-</div>
-<!-- <div mat-dialog-actions> -->
-  <br>
-  <div fxLayout="row" fxLayoutAlign="space-between none">
-    <a mat-button color="primary" cdkFocusInitial [href]="mailTo">Open in Outlook</a>
-    <button mat-raised-button color="warn" [mat-dialog-close]="" >Close</button>
+<div mat-dialog-title>
+  <div fxLayout="row" style="width: 100%" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <fa-duotone-icon [icon]="faCheckCircle" size="2x" primaryColor="green" primaryOpacity=".7" secondaryColor="#eee"
+      secondaryOpacity=".8">
+    </fa-duotone-icon>
+    <div>Equipment updated!</div>
   </div>
-<!-- </div> -->
+</div>
+<div mat-dialog-content>
+  <p></p>
+</div>
+<div mat-dialog-actions>
+  <br>
+  <div fxLayout="row" style="width: 100%" fxLayoutAlign="end none">
+    <button mat-stroked-button cdkFocusInitial color="primary" [mat-dialog-close]="">Ok</button>
+  </div>
+</div>

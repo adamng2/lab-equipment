@@ -1,12 +1,19 @@
 .card{
-    margin-top: 10px;
-    
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    padding: 15px;
 }
+.card:hover{
+    background-color: #ccc;
+    /* border: 1px solid blue; */
+}
+
 
 .viewport {
     height: 700px;
-    width: 800px;
-    border: 1px solid #CCC;
+    width: 100%;
+    /* border: 1px solid #CCC; */
     border-radius: 7px;
 }
   
@@ -18,28 +25,19 @@
 
 }
 
-.header{
-    font-size: 10px;
-    color: #3f51b5; ;
+.title{
+    font-size: 22px;
+    /* color: rgba(0,0,0, .87); */
+    color: #3f51b5;
     /* letter-spacing: 1px; */
 }
 
-.text{
+.props{
+    color: rgba(0,0,0, .87);
+    font-size: 13px;
+}
+
+.description{
     font-size: 14px;
-    color: rgba( 0, 0, 0 .8);
-}
-
-.button{
-    background-color: white;
-    box-shadow: none;
-}
-
-p{
-    color: rgba(0,0,0,.54);;
-}
-
-.title{
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
+    color: rgba(0,0,0, .6);
 }

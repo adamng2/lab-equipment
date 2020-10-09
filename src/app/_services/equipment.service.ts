@@ -4,6 +4,8 @@ import { map, catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 import { Asset } from '../_model/asset';
+import { Equipment } from '../_model/equipment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -15,32 +17,46 @@ import { Asset } from '../_model/asset';
   
     constructor(private http: HttpClient, public authService: AuthService) {}
 
-    public getEquipments(){
+    public getEquipments(): Observable<Equipment[]> {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'bearer ' + this.authService.currentUserValue?.token
       })
-      return this.http.get<any>( this._baseUrl + "/items/equipment?fields=*.*", { headers: headers });
+
+      return this.http.get<Equipment[]>
+        ( this._baseUrl + "/items/equipment?fields=*.*&limit=-1", { headers: headers })
+        .pipe( (map ( (result: any) => result.data )))
     }
+
+    public getEquipment(id: number){
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + this.authService.currentUserValue?.token
+      })
+      return this.http.get<any>( this._baseUrl + "/items/equipment/" + id + '?fields=*.*', { headers: headers })
+      .pipe( (map ( (result: any) => result.data )));
+    }
+
   
   
     // Only authorized users can post links, add bearer token if available
-    public postEquipment(eq: any){
+    public saveEquipment(eq: any, existingId: number){
+
+      const endPoint = this._baseUrl + "/items/equipment";
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'bearer ' + this.authService.currentUserValue?.token
       })
-      return this.http.post<any>( this._baseUrl, eq );
+      if (existingId == -1){
+        console.warn("Adding...");
+        return this.http.post<any>( endPoint, eq );
+      }
+      else{
+        console.warn("Patching...");
+        return this.http.patch( endPoint + "/" + existingId, eq);
+      }
     }
 
-        // Only authorized users can post links, add bearer token if available
-    public postAsset(asset: any){
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'bearer ' + this.authService.currentUserValue?.token
-      })
-      return this.http.post<any>( this._baseUrl + "/items/asset_information", asset );
-    }
 
     public getCollectionFields( collectionName: string ){
       const url = `${environment.apiUrl}/fields/` + collectionName;

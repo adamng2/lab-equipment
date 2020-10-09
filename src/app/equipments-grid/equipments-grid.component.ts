@@ -102,7 +102,7 @@ export class EquipmentsGridComponent implements OnInit {
     this.equipmentService.getEquipments()
     .subscribe(data => {
       console.log( data );
-      this.rowData = data.data;
+      //this.rowData = data.data;
     });
 
     //this.addColumns("asset_information");

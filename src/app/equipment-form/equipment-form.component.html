@@ -1,12 +1,15 @@
 <form [formGroup]="form">
   <mat-accordion multi>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-        <fa-duotone-icon fxFlex="40px" [icon]="faInfo" size="lg" primaryColor="#3f51b5" primaryOpacity=".8"
-          secondaryColor="#3f51b5" secondaryOpacity=".8">
-        </fa-duotone-icon>
-        <div fxFlex>General Equipment Information</div>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon" aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faInfo" size="lg" primaryColor="#3f51b5" primaryOpacity=".8"
+              secondaryColor="#3f51b5" secondaryOpacity=".8"> </fa-duotone-icon>
+          </div>
+          <div>General Equipment Information</div>
+        </div>
       </mat-expansion-panel-header>
       <div class="section-form">
         <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="20px">
@@ -33,25 +36,30 @@
 
           <mat-form-field>
             <mat-label>Model</mat-label>
-            <input autocomplete="off" matInput placeholder="Enter model number" formControlName="manufacturer_id">
+            <input autocomplete="off" matInput placeholder="Enter model number" formControlName="model_number">
             <span matPrefix></span>
             <mat-hint></mat-hint>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Description</mat-label>
-            <textarea matInput placeholder="Enter equipment description"></textarea>
+            <textarea matInput placeholder="Enter equipment description"
+              formControlName="equipment_description"></textarea>
           </mat-form-field>
         </div>
       </div>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-        <fa-duotone-icon fxFlex="40px" [icon]="faClipoardList" size="lg" primaryColor="#333" primaryOpacity="1"
-          secondaryColor="green" secondaryOpacity=".6">
-        </fa-duotone-icon>
-        <div fxFlex>Asset Information</div>
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon"  aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faClipoardList" size="lg" primaryColor="#333" primaryOpacity="1"
+              secondaryColor="green" secondaryOpacity=".6">
+            </fa-duotone-icon>
+          </div>
+          <div>Asset Information</div>
+        </div>
       </mat-expansion-panel-header>
       <div class="section-form">
         <div formGroupName="asset" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
@@ -138,14 +146,6 @@
             <mat-hint></mat-hint>
           </mat-form-field>
 
-
-          <mat-form-field>
-            <mat-label>Core to Capability</mat-label>
-            <input autocomplete="off" numbersOnly formControlName="core_to_capability" matInput placeholder="">
-            <span matPrefix></span>
-            <mat-hint></mat-hint>
-          </mat-form-field>
-
           <mat-form-field>
             <mat-label>Kept for spare parts?</mat-label>
             <input autocomplete="off" numbersOnly formControlName="is_kept_for_spare_parts" matInput placeholder="">
@@ -221,13 +221,17 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-      <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="start center">
-        <fa-duotone-icon fxFlex="40px" [icon]="faPencilRuler" size="lg" primaryColor="purple" primaryOpacity=".7"
-          secondaryColor="black" secondaryOpacity=".8">
-        </fa-duotone-icon>
-        <div fxFlex>Dimensional Information and Location Considerations</div>
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon" aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faPencilRuler" size="lg" primaryColor="purple" primaryOpacity=".7"
+              secondaryColor="black" secondaryOpacity=".8">
+            </fa-duotone-icon>
+          </div>
+          <div>Dimensional Information and Location Considerations</div>
+        </div>
       </mat-expansion-panel-header>
-      <div  class="section-form">
+      <div class="section-form">
         <div formGroupName="dimensional" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
           <mat-form-field>
             <mat-label>Height</mat-label>
@@ -319,7 +323,7 @@
           </mat-radio-group>
 
           <label id="Is">Floor/Bench</label>
-          <mat-radio-group formControlName="is_floor_bench" class="radio-group" aria-label="Select the answer">
+          <mat-radio-group formControlName="is_floor_or_bench" class="radio-group" aria-label="Select the answer">
             <mat-radio-button value="1">Yes</mat-radio-button>
             <mat-radio-button value="0">No</mat-radio-button>
           </mat-radio-group>
@@ -327,47 +331,29 @@
       </div>
     </mat-expansion-panel>
 
-
-
-
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon"  aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faBolt" size="lg" primaryColor="goldenrod" primaryOpacity=".8"
+              secondaryColor="goldenrod" secondaryOpacity=".8">
+            </fa-duotone-icon>
+          </div>
+          <div>Electrical</div>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="section-form">
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
-  <br><br>
 
-  <button mat-fab (click)="AddEquipment()" color="primary" aria-label="Example icon button with a delete icon"
-    class="float">
+  <button mat-fab (click)="Save()" color="primary" aria-label="Example icon button with a delete icon" class="float">
     <fa-duotone-icon [icon]="faSave" size="2x" primaryColor="white" primaryOpacity="1" secondaryColor="green"
       secondaryOpacity=".8">
     </fa-duotone-icon>
   </button>
 
-  {{this.form.value | json}}
+  <!-- {{this.form.value | json}} -->
 </form>
 
-
-
-
-
-
-
-
-
-
-
-<!-- <mat-card class="card">
-  <mat-card-header>
-      <fa-icon mat-card-avatar class="gray"
-        [icon]="faTools" size="3x">
-    </fa-icon>
-    <mat-card-title>New Equipment</mat-card-title>
-    <mat-card-subtitle>Add new equipment</mat-card-subtitle>
-  </mat-card-header>
-
-
-  <mat-card-content>
-
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
+<br><br>
