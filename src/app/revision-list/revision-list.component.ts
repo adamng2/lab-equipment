@@ -12,6 +12,7 @@ import { ChangelogService } from '../_services/changelog.service';
   styleUrls: ['./revision-list.component.css'],
 })
 export class RevisionListComponent implements OnInit {
+  equipmentID: number;
   revisions: any = [];
   displayedColumns: string[] = [
     'date',
@@ -29,15 +30,15 @@ export class RevisionListComponent implements OnInit {
     @Inject(LOCALE_ID) private locale: string,
     private route: ActivatedRoute,
     private equipmentService: EquipmentService,
-    private changelogService: ChangelogService
+    private changelogService: ChangelogService,
+    private router: Router
   ) {}
 
-
   ngOnInit(): void {
-    const equipment_id = this.route.snapshot.params.id;
-    if (equipment_id) {
+    this.equipmentID = this.route.snapshot.params.id;
+    if (this.equipmentID) {
       this.equipmentService
-        .getEquipmentRevisions(equipment_id)
+        .getEquipmentRevisions(this.equipmentID)
         .subscribe((result) => {
           this.revisions = this.changelogService.getChangelog(result);
           this.dataSource = new MatTableDataSource<any>(
@@ -46,5 +47,11 @@ export class RevisionListComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
         });
     }
+  }
+
+  showEquipment(id: number): void {
+    this.router.navigate([]).then(() => {
+      window.open('#/equipment/' + id, '_blank');
+    });
   }
 }
