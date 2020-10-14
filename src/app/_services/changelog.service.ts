@@ -25,7 +25,7 @@ export class ChangelogService {
           old_value = revisions[i - 1].data[changed_field];
         }
 
-        if (activity.action == 'create' || old_value !== new_value) {
+        if (activity.action == 'create' || old_value != new_value) {
           changelog.push({
             id,
             action: activity.action,
