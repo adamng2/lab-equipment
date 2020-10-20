@@ -38,4 +38,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## GH Pages
 `ng build --prod --base-href "https://adamng2.github.io/lab-equipment/"`
+
 `npx angular-cli-ghpages --dir=dist/info-collector`
