@@ -37,6 +37,16 @@ import { Observable } from 'rxjs';
       .pipe( (map ( (result: any) => result.data )));
     }
 
+    public getEquipmentRevisions(id: number){
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + this.authService.currentUserValue?.token
+      })
+      const endURL = "?fields=data,activity.action,activity.action_by,activity.action_on,id,delta"
+      return this.http.get<any>( this._baseUrl + "/items/equipment/" + id + '/revisions' + endURL, { headers: headers })
+      .pipe( (map ( (result: any) => result.data )));
+    }
+
   
   
     // Only authorized users can post links, add bearer token if available

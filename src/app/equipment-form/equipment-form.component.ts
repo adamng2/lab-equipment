@@ -189,4 +189,8 @@ export class EquipmentFormComponent implements OnInit {
     });
   }
 
+  showRevisions(id: number){
+    this.router.navigate([]).then(result => { window.open('#/equipment/' + id + "/revisions", '_blank'); });
+  }
+
 }
