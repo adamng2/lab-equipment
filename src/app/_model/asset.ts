@@ -1,5 +1,6 @@
 export interface Asset {
 
+  id: number;
   unspsc_code: string;
   unspsc_title: string;
   equipment_current_building_location: string;

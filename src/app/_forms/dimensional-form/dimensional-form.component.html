@@ -1,0 +1,95 @@
+<div [formGroup]="dimensional" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+  <mat-form-field>
+    <mat-label>Height</mat-label>
+    <input autocomplete="off" numbersOnly matInput placeholder="Enter in metric" formControlName="height">
+    <span matPrefix></span>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Width</mat-label>
+    <input autocomplete="off" numbersOnly matInput placeholder="Enter in metric" formControlName="width">
+    <span matPrefix></span>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Depth</mat-label>
+    <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="depth">
+    <span matPrefix></span>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Weight</mat-label>
+    <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="weight">
+    <span matPrefix></span>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Amount of Bench Space Required Adjacent to Equipment
+    </mat-label>
+    <input autocomplete="off" numbersOnly matInput placeholder="Enter bench space required adjacent to equipment "
+      formControlName="bench_spacing">
+    <span matPrefix></span>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+  <!-- <mat-checkbox>Is Stand Alone</mat-checkbox> -->
+  <label id="Is stand alone?">Is it a stand alone piece of equipment? </label>
+  <mat-radio-group formControlName="is_stand_alone" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is stand alone?">Can the equipment be relocated? (Y/N)
+  </label>
+  <mat-radio-group formControlName="is_relocatable" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is stand alone?">Clean or Dirty</label>
+  <mat-radio-group formControlName="is_clean" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is ">Humidity Sensitive</label>
+  <mat-radio-group formControlName="is_humidity_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is static sensitive?">Static Sensitive</label>
+  <mat-radio-group formControlName="is_static_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is stand alone?">Light Sensitive</label>
+  <mat-radio-group formControlName="is_light_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is">Noise Sensitive</label>
+  <mat-radio-group formControlName="is_noise_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is">Air Pressure or Flow Sensitive</label>
+  <mat-radio-group formControlName="is_air_pressure_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is">Vibration Sensitive</label>
+  <mat-radio-group formControlName="is_vibration_sensitive" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+
+  <label id="Is">Floor/Bench</label>
+  <mat-radio-group formControlName="is_floor_or_bench" class="radio-group" aria-label="Select the answer">
+    <mat-radio-button value="1">Yes</mat-radio-button>
+    <mat-radio-button value="0">No</mat-radio-button>
+  </mat-radio-group>
+</div>

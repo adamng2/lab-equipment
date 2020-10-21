@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
-import { faSearch, faWarehouse, faPlus, faUser } from '@fortawesome/pro-duotone-svg-icons';
+import { faWarehouse, faBars } from '@fortawesome/pro-duotone-svg-icons';
+import { faSearch, faPlus, faUser } from '@fortawesome/pro-light-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   faPlus = faPlus;
   faSearch = faSearch;
   faWarehouse = faWarehouse;
+  faBars = faBars;
   
   title = 'lab-equipment';
   hasToken: boolean;

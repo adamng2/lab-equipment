@@ -2,9 +2,43 @@
     flex: 1 1 auto;
 }
 
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+.header{
+    padding: 0px 20px;
+    color: #222;
+    background-color: white;
+    /* border-bottom: 1px solid #E8E8E8; */
+    font-weight: 600;
+}
+
+.search{
+    padding: 10px 30px;
+    background-color: #f1f1f1;
+    /* background-color: #ccc; */
+}
+
 .button{
     background-color: transparent;
     box-shadow: none;
     margin-left: 20px;
+    color: rgba(0, 0, 0, .87);
+}
+.button:hover{
+    background-color: whitesmoke;
+}
+
+.content{
+    margin: 10px 40px;
+    height: 100%;
+}
+
+.custom-search{
+    width: 100%;
+    padding: 15px;
+    border-radius: 3px;
 }
 

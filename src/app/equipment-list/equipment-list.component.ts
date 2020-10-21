@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipmentService } from '../_services/equipment.service';
 import { Equipment } from '../_model/equipment';
-import { faHomeAlt, faBarcodeAlt, faCalendar, faBuilding, faRunning, faDatabase, faCircle, faUserTag } from '@fortawesome/pro-duotone-svg-icons';
+import { faHomeAlt, faBarcodeAlt, faCalendar, faBuilding, faRunning, faSearch, faCircle, faUserTag, faPen } from '@fortawesome/pro-duotone-svg-icons';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -20,28 +20,37 @@ export class EquipmentListComponent implements OnInit {
   faRunning = faRunning;
   faUserTag = faUserTag;
   faCircle = faCircle;
+  faSearch = faSearch;
+  faPen = faPen;
 
+  isLoading = true;
   datasource: MatTableDataSource<Equipment>;
   equipments: Equipment[];
 
   
   constructor(  private equipmentService: EquipmentService,
-    private router: Router) { }
+    private router: Router) { 
+
+    }
 
   ngOnInit(): void {
     this.equipmentService.getEquipments()
     .subscribe(equipments => {
       this.datasource = new MatTableDataSource(equipments);
-      console.log( equipments )
+      this.equipments = equipments;
+      this.isLoading = false;
+      //console.log( equipments )
     });
   }
 
   showDetails(id: number){
-    this.router.navigate([]).then(result => { window.open('#/equipment/' + id, '_blank'); });
+    this.router.navigateByUrl('equipment/' + id);
+    //this.router.navigate([]).then(result => { window.open('#/equipment/' + id, '_blank'); });
   }
 
   applyFilter(filterValue: string) {
     this.datasource.filter = filterValue.trim().toLowerCase();
+    
   }
 
 

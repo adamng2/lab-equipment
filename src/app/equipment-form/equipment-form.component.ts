@@ -14,16 +14,22 @@ import { faClipboard,
   faClipboardList, 
   faInfo, 
   faInfoCircle, 
-  faInfoSquare, 
-  faPen, 
+  faInfoSquare,
   faPencilRuler, 
   faRulerCombined, 
   faDollarSign, 
   faBolt } from '@fortawesome/pro-duotone-svg-icons';
 
+  import { faPen, faPlus} from '@fortawesome/pro-light-svg-icons';
+
 import { Equipment } from '../_model/equipment';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+
+function _window() : any {
+  // return the global native browser window object
+  return window;
+}
 
 
 @Component({
@@ -35,19 +41,20 @@ export class EquipmentFormComponent implements OnInit {
 
   form: any;
   existingEquipmentId = -1; // -1 not existing
+  title = "";
 
   
   // icons
   faInfo = faInfo;
   faBolt = faBolt;
   faInfoCircle = faInfoCircle;
+  faPlus = faPlus;
   faClipoard = faClipboard;
   faClipoardList = faClipboardList;
   faSave = faSave;
   faPencilRuler = faPencilRuler;
   faDollarSign = faDollarSign;
-  faRulerCombined = faRulerCombined;
-  
+  faPen = faPen;  
   
   constructor(private formBuilder: FormBuilder,
     @Inject(LOCALE_ID) private locale: string,
@@ -66,12 +73,20 @@ export class EquipmentFormComponent implements OnInit {
 
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
+
         const id = this.existingEquipmentId = +params['id'];
         //this.navigated = true;
         this.equipmentService.getEquipment(id).subscribe( result => {
-          console.log( "EXISTING "  + this.existingEquipmentId );
+
+          this.title = "Edit equipment " + result.equipment_id;
+          //Add id's controls patch sub-objects
+          this.form.get('asset').addControl('id', new FormControl('', Validators.required));
+          this.form.get('dimensional').addControl('id', new FormControl('', Validators.required));
           this.form.patchValue(result);
+          //console.log( "EXISTING "  + this.form.value );
         });
+      }else{
+        this.title = "New equipment"
       }
     });
 

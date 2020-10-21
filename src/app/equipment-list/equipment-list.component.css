@@ -1,20 +1,21 @@
 .card{
-    cursor: pointer;
+    /* cursor: pointer; */
     border-bottom: 1px solid #ccc;
     background-color: white;
     padding: 15px;
+    width: 100%;
+    height: 200px;
 }
+
 .card:hover{
-    background-color: #ccc;
-    /* border: 1px solid blue; */
+    /* background-color: #f1f1f1; */
 }
 
 
 .viewport {
     height: 700px;
     width: 100%;
-    /* border: 1px solid #CCC; */
-    border-radius: 7px;
+    border: 1px solid #CCC;
 }
   
 .item {
@@ -26,9 +27,9 @@
 }
 
 .title{
-    font-size: 22px;
+    font-size: 18px;
     /* color: rgba(0,0,0, .87); */
-    color: #3f51b5;
+    /* color: #3f51b5; */
     /* letter-spacing: 1px; */
 }
 
@@ -40,4 +41,38 @@
 .description{
     font-size: 14px;
     color: rgba(0,0,0, .6);
+}
+
+.search{
+    padding: 30px;
+    /* border: 1px solid white;
+    background-color: white; */
+    
+}
+::ng-deep .mat-form-field-wrapper{
+    padding-bottom: 0;
+    background-color: white;
+}
+
+.spinner{
+    width: 100px;
+	height: 100px;
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+}
+
+.button{
+    background-color: #f1f1f1;
+    box-shadow: none;
+    color: rgba(0, 0, 0, .87);
+}
+
+.button:hover{
+    background-color: #3f51b5;
 }

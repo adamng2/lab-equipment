@@ -1,4 +1,7 @@
 export interface Dimensional {
+
+    id: number;
+
     width: number;
     depth: number;
     height: number;

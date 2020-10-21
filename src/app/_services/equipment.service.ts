@@ -49,6 +49,7 @@ import { Observable } from 'rxjs';
       })
       if (existingId == -1){
         console.warn("Adding...");
+        console.warn(eq);
         return this.http.post<any>( endPoint, eq );
       }
       else{

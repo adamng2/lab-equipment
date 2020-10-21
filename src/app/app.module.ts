@@ -21,6 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { MatOptionModule, MatNativeDateModule, MatRippleModule, MAT_DATE_FORMATS, DateAdapter, NativeDateAdapter, } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -53,6 +55,9 @@ import { HomeComponent } from './home/home.component';
 import { EquipmentListComponent } from './equipment-list/equipment-list.component';
 import { FlatTreeComponent } from './flat-tree/flat-tree.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DimensionalFormComponent } from './_forms/dimensional-form/dimensional-form.component';
+import { NgxMarkjsModule } from 'ngx-markjs';
+
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -107,7 +112,8 @@ const appRoutes: Routes = [
     EquipmentsGridComponent,
     HomeComponent,
     EquipmentListComponent,
-    FlatTreeComponent
+    FlatTreeComponent,
+    DimensionalFormComponent
   ],
   imports: [
     BrowserModule,
@@ -132,6 +138,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatDividerModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatRadioModule,
     MatOptionModule,
@@ -145,6 +152,7 @@ const appRoutes: Routes = [
     MatTableModule,
     FontAwesomeModule,
     ScrollingModule,
+    NgxMarkjsModule,
     AgGridModule.withComponents([
 
     ]),

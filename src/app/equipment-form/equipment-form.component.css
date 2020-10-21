@@ -1,4 +1,7 @@
 
+H3{
+    /* color: #666; */
+}
 .section-form{
     margin-left: 30px;
     margin-right: 30px;
@@ -18,5 +21,5 @@
 .float{
     position: fixed;
     bottom: 20px;
-    right: 34px;
+    right: 15px;
 }

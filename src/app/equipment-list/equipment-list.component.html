@@ -1,25 +1,46 @@
+<div class="mat-title">Search</div>
+<div *ngIf="isLoading; else listBlock" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #listBlock>
+  <div fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Find</mat-label>
+      <input autocomplete="off" #searchText matInput placeholder="Type to start searching..."
+        (keyup)="applyFilter($event.target.value)">
+      <fa-icon matSuffix [icon]="faSearch" size="2x"></fa-icon>
+    </mat-form-field>
+    <br>
 
+    <cdk-virtual-scroll-viewport itemSize="200" class="viewport">
+      <div *cdkVirtualFor="let eq of datasource" [markjsHighlight]="searchText.value">
+        <div fxLayout="column" fxLayoutAlign="start start" class="card" fxLayoutGap="20px">
+          <div fxFlex="20" style="width: 100%;">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="title">{{eq.asset?.unspsc_title}}</div>
+              <div> 
+                <button class="button " mat-mini-fab (click)="showDetails(eq.id)">
+                  <fa-icon matSuffix [icon]="faPen" size="lg"></fa-icon></button>
+                </div>
+            </div>
 
-<mat-form-field style="width: 100%">
-  <mat-label>Search</mat-label>
-  <input autocomplete="off" matInput placeholder="Type to start searching..." (keyup)="applyFilter($event.target.value)" >
-  <span matSuffix><sup style="color:#3f51b5;">{{datasource?.filteredData?.length}}/{{datasource?.data?.length}}</sup></span>
-  <mat-hint></mat-hint>
-</mat-form-field>
+          </div>
+          <div fxFlex class="description">{{eq?.equipment_description}}</div>
+          <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="props">
+            <div>
+              <fa-icon [icon]="faBarcodeAlt"></fa-icon> {{eq.asset?.unspsc_code}}
+            </div>
+            <div>
+              <fa-icon [icon]="faHomeAlt"></fa-icon> {{eq.asset?.equipment_current_building_location}}
+            </div>
+            <div>
+              <fa-icon [icon]="faCalendar"></fa-icon> {{eq.asset?.acquisition_date}}
+            </div>
+            <!-- <div><fa-icon [icon]="faUserTag"></fa-icon> {{eq.department_owner}}</div> -->
+          </div>
 
-  <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-    <div *cdkVirtualFor="let eq of datasource">
-      <div fxLayout="column" fxLayoutAlign="start start" class="card" fxLayoutGap="20px"(click)="showDetails(eq.id)" >
-        <div class="title">{{eq.asset?.unspsc_title}}</div>
-        <div class="description">{{eq?.equipment_description}}</div>
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="props">
-          <div><fa-icon [icon]="faBarcodeAlt"></fa-icon> {{eq.asset?.unspsc_code}}</div>
-          <div><fa-icon [icon]="faHomeAlt"></fa-icon> {{eq.asset?.equipment_current_building_location}}</div>
-          <div><fa-icon [icon]="faCalendar"></fa-icon> {{eq.asset?.acquisition_date}}</div>
-          <!-- <div><fa-icon [icon]="faUserTag"></fa-icon> {{eq.department_owner}}</div> -->
         </div>
-
       </div>
-    </div>
-  </cdk-virtual-scroll-viewport>
-
+    </cdk-virtual-scroll-viewport>
+  </div>
+</ng-template>
