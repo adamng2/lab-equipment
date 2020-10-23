@@ -3,8 +3,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
+import {
+  faClipboard,
+  faUserEdit,
+  faPen,
+} from '@fortawesome/pro-duotone-svg-icons';
+
 import { EquipmentService } from '../_services/equipment.service';
 import { ChangelogService } from '../_services/changelog.service';
+
+
 
 @Component({
   selector: 'app-revision-list',
@@ -12,6 +20,8 @@ import { ChangelogService } from '../_services/changelog.service';
   styleUrls: ['./revision-list.component.css'],
 })
 export class RevisionListComponent implements OnInit {
+  title = "Revisions";
+
   equipmentID: number;
   revisions: any = [];
   displayedColumns: string[] = [
@@ -23,6 +33,10 @@ export class RevisionListComponent implements OnInit {
   ];
 
   dataSource = new MatTableDataSource<any>([]);
+
+  // icons
+  faUserEdit = faUserEdit;  
+  faPen = faPen;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

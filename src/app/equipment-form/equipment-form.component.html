@@ -1,7 +1,17 @@
-<h2>
-  <fa-icon [icon]="faPlus"></fa-icon>
-  {{title}}
-</h2>
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div>
+    <h2>
+      <fa-icon [icon]="faPlus"></fa-icon>
+      {{title}}
+    </h2>
+  </div>
+  <div fxFlex></div>
+  <button mat-flat-button color="primary" *ngIf="existingEquipmentId != -1" (click)="showRevisions(existingEquipmentId)"><fa-icon [icon]="faUserEdit"></fa-icon> View Revisions</button>
+
+</div>
+
+
+
 <form [formGroup]="form">
   <mat-accordion multi>
 
@@ -267,4 +277,4 @@
 
 <br><br>
 
-<button mat-flat-button color="accent" *ngIf="existingEquipmentId != -1" (click)="showRevisions(existingEquipmentId)">View Revisions</button>
+

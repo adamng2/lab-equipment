@@ -10,6 +10,7 @@ import {
 } from '@angular/material/snack-bar';
 
 import { faClipboard, 
+  faUserEdit,
   faSave, 
   faClipboardList, 
   faInfo, 
@@ -55,6 +56,7 @@ export class EquipmentFormComponent implements OnInit {
   faPencilRuler = faPencilRuler;
   faDollarSign = faDollarSign;
   faPen = faPen;  
+  faUserEdit = faUserEdit;  
   
   constructor(private formBuilder: FormBuilder,
     @Inject(LOCALE_ID) private locale: string,
