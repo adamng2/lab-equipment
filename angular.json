@@ -36,7 +36,6 @@
             "scripts": []
           },
           "configurations": {
-            
             "production": {
               "fileReplacements": [
                 {
@@ -66,11 +65,15 @@
               ]
             },
             "fr": {
-              "localize": ["fr"],
+              "localize": [
+                "fr"
+              ],
               "main": "src/main.ts"
             },
             "en-US": {
-              "localize": ["en-US"],
+              "localize": [
+                "en-US"
+              ],
               "main": "src/main.ts"
             }
           }
@@ -90,8 +93,6 @@
             "en-US": {
               "browserTarget": "info-collector:build:en-US"
             }
-            
-            
           }
         },
         "extract-i18n": {
@@ -142,6 +143,10 @@
               "devServerTarget": "info-collector:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
