@@ -6,6 +6,10 @@ table {
   width: 10%;
 }
 
+.mat-column-collection {
+  width: 10%;
+}
+
 .mat-column-action {
   width: 5%;
 }
