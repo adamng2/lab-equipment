@@ -37,14 +37,17 @@ import { Observable } from 'rxjs';
       .pipe( (map ( (result: any) => result.data )));
     }
 
-    public getEquipmentRevisions(id: number){
+    public getEquipmentRevisions(id: number, assetID: string){
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'bearer ' + this.authService.currentUserValue?.token
       })
-      const endURL = "?fields=data,activity.action,activity.action_by,activity.action_on,id,delta"
-      return this.http.get<any>( this._baseUrl + "/items/equipment/" + id + '/revisions' + endURL, { headers: headers })
+      const endURL = "?fields=data,collection,activity.action,activity.action_by,activity.action_on,id,delta"
+      const equipmentRevisions =  this.http.get<any>( this._baseUrl + "/items/equipment/" + id + '/revisions' + endURL, { headers: headers })
       .pipe( (map ( (result: any) => result.data )));
+      const assetRevisions = this.http.get<any>( this._baseUrl + "/items/asset_information/" + assetID + '/revisions' + endURL, { headers: headers })
+      .pipe( (map ( (result: any) => result.data )));
+      return [equipmentRevisions, assetRevisions];
     }
 
   
