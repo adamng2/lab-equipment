@@ -1,7 +1,7 @@
-<h2>
-  <fa-icon [icon]="faPlus"></fa-icon>
+<h2 class="mat-title">
   {{title}}
 </h2>
+
 <form [formGroup]="form">
   <mat-accordion multi>
 
@@ -16,7 +16,7 @@
         </div>
       </mat-expansion-panel-header>
       <div class="section-form">
-        <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="20px">
+        <div fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="20px">
           <mat-form-field required>
             <mat-label>ID</mat-label>
             <input autocomplete="off" matInput placeholder="Enter equipment ID" formControlName="equipment_id">

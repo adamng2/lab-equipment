@@ -1,7 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutAlign="start stretch" >
   <div class="header" fxLayout="row" fxLayoutAlign="start center">
-    <h2 fxFlex="40">
-      <fa-duotone-icon [icon]="faWarehouse" size="lg" primaryColor="#3f51b5"></fa-duotone-icon> 
+    <h2 fxFlex="40" >
+      <!-- <fa-duotone-icon [icon]="faWarehouse" size="lg" primaryColor="#3f51b5"></fa-duotone-icon>  -->
       LC Equipment Inventory
     </h2>
     <div fxFlex></div>
@@ -36,9 +36,10 @@
       <span class="toolbar-spacer"></span>
 
       <button
+        class="button"
         matTooltip="Search equipments"
         [routerLink]="['/equipments']" 
-        mat-mini-fab aria-label="" class="button">
+        mat-mini-fab aria-label="">
         <fa-icon [icon]="faSearch" size="lg"></fa-icon>
       </button>
       <button 
@@ -53,46 +54,7 @@
 
   </mat-toolbar>
 
-  <div fxFlex class="content mat-typography">
+  <div fxFlex class="content">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-
-
-
-
-
-<!-- <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 100%; height: 100%;">
-  <div>
-    <mat-toolbar color="" style="background-color: white;">
-      <mat-toolbar-row >
-        <fa-duotone-icon [icon]="faWarehouse" ></fa-duotone-icon>
-        <h1>&nbsp; LC Equipment Inventory</h1>
-        <span class="toolbar-spacer"></span>
-
-
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-
-        <span class="toolbar-spacer"></span>
-
-        <button
-          matTooltip="Search equipments"
-          [routerLink]="['/equipments']" 
-          mat-mini-fab aria-label="" class="button">
-          <fa-icon [icon]="faSearch" size="lg"></fa-icon>
-        </button>
-        <button 
-          matTooltip="Add equipment"
-          [routerLink]="['/equipment']" mat-mini-fab aria-label="" class="button">
-          <fa-icon [icon]="faPlus" size="lg"></fa-icon>
-        </button>
-        <button mat-mini-fab aria-label="" class="button">
-          <fa-icon [icon]="faUser" size="lg"></fa-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
-  </div>
-
-</div> -->

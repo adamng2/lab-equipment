@@ -115,7 +115,8 @@ const appRoutes: Routes = [
     HomeComponent,
     EquipmentListComponent,
     FlatTreeComponent,
-    DimensionalFormComponent
+    DimensionalFormComponent,
+    RevisionListComponent
   ],
   imports: [
     BrowserModule,

@@ -82,8 +82,10 @@ export class EquipmentFormComponent implements OnInit {
           //Add id's controls patch sub-objects
           this.form.get('asset').addControl('id', new FormControl('', Validators.required));
           this.form.get('dimensional').addControl('id', new FormControl('', Validators.required));
+          // This will throw an error of any of our sub-object have a 
+          // null value i.e. equipment.dimensional = null
           this.form.patchValue(result);
-          //console.log( "EXISTING "  + this.form.value );
+          console.log(result );
         });
       }else{
         this.title = "New equipment"
@@ -159,7 +161,6 @@ export class EquipmentFormComponent implements OnInit {
     let tempEquipment: Equipment = this.form.value;
     console.log(tempEquipment);
     if(this.form.valid){
-      // shipment.expiry_date = formatDate(shipment.expiry_date,'yyyy-MM-dd', this.locale);
       this.equipmentService.saveEquipment(tempEquipment, this.existingEquipmentId)
       .subscribe( (result: any) =>
       {

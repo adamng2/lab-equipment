@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipmentService } from '../_services/equipment.service';
 import { Equipment } from '../_model/equipment';
-import { faHomeAlt, faBarcodeAlt, faCalendar, faBuilding, faRunning, faSearch, faCircle, faUserTag, faPen } from '@fortawesome/pro-duotone-svg-icons';
+import { faHomeAlt, faBarcodeAlt, faCalendar, 
+  faBuilding, faCircle, faUserTag } from '@fortawesome/pro-duotone-svg-icons';
+
+  import { faExternalLink, faPen, faSearch } from '@fortawesome/pro-light-svg-icons';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -17,7 +20,7 @@ export class EquipmentListComponent implements OnInit {
   faBarcodeAlt = faBarcodeAlt;
   faCalendar = faCalendar;
   faBuilding = faBuilding;
-  faRunning = faRunning;
+  faExternalLink = faExternalLink;
   faUserTag = faUserTag;
   faCircle = faCircle;
   faSearch = faSearch;

@@ -8,7 +8,7 @@
       <mat-label>Find</mat-label>
       <input autocomplete="off" #searchText matInput placeholder="Type to start searching..."
         (keyup)="applyFilter($event.target.value)">
-      <fa-icon matSuffix [icon]="faSearch" size="2x"></fa-icon>
+      <fa-icon matSuffix [icon]="faSearch" size="2x" style="color: lightgray;"></fa-icon>
     </mat-form-field>
     <br>
 
@@ -19,11 +19,14 @@
             <div fxLayout="row" fxLayoutAlign="space-between center">
               <div class="title">{{eq.asset?.unspsc_title}}</div>
               <div> 
-                <button class="button " mat-mini-fab (click)="showDetails(eq.id)">
-                  <fa-icon matSuffix [icon]="faPen" size="lg"></fa-icon></button>
-                </div>
+                <button class="button" mat-mini-fab  matTooltip="Edit equipment" (click)="showDetails(eq.id)">
+                  <fa-icon matSuffix [icon]="faPen" size="lg"></fa-icon>
+                </button>
+                <button class="button" mat-mini-fab matTooltip="Show details" (click)="showDetails(eq.id)">
+                  <fa-icon matSuffix [icon]="faExternalLink" size="lg"></fa-icon>
+                </button>
+              </div>
             </div>
-
           </div>
           <div fxFlex class="description">{{eq?.equipment_description}}</div>
           <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" class="props">

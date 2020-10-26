@@ -3,7 +3,11 @@
 @import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-alpine.css";
 
 html, body { height: 100%; }
-body { margin: 0; background-color: #f1f1f1; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  background-color: #f1f1f1; 
+  font-family: Roboto, Arial, sans-serif;
+}
 
 .alert {
     position: relative;
@@ -102,3 +106,4 @@ body { margin: 0; background-color: #f1f1f1; font-family: Roboto, "Helvetica Neu
     background-color: #EEE; 
     border-radius: 5px;
 }
+
