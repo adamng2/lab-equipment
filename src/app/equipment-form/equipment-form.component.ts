@@ -1,3 +1,4 @@
+import { forkJoin } from 'rxjs';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { EquipmentService } from '../_services/equipment.service';
@@ -49,8 +50,10 @@ export class EquipmentFormComponent implements OnInit {
   title = "";
 
   // dropdowns
-  department_owner_options: any[] = [];
-  department_owner_filtered_options: Observable<any[]>;
+  // department_owner_options: any[] = [];
+  // department_owner_filtered_options: Observable<any[]>;
+
+  lookups: any
   
   // icons
   faInfo = faInfo;
@@ -73,6 +76,16 @@ export class EquipmentFormComponent implements OnInit {
     private equipmentService: EquipmentService,
     private translationService: TranslationService,
     private lookupService: LookupService) {
+      this.lookups = {
+        department_owner: {
+          options: [],
+          filtered_options: undefined
+        },
+        manufacturer: {
+          options: [],
+          filtered_options: undefined
+        }
+      }
   }
 
   ngOnInit(): void {
@@ -81,14 +94,22 @@ export class EquipmentFormComponent implements OnInit {
     this.form.addControl("asset", this.assetControls);
     this.form.addControl("dimensional", this.dimensionalControls);
 
-    this.lookupService.getDepartments().subscribe(result => {
-      this.department_owner_options = this.translationService.changeReltoID(result, "department");
-      this.department_owner_filtered_options = this.form.controls.department_owner.valueChanges.pipe(
-        startWith(''),
-        map((value: any) => typeof value === "object" ? this.department_owner_options.find(dept => dept.id === value.id).name : typeof value === 'string' ? value : ""),
-        map((name: any) => name ? this._filter(name) : this.department_owner_options.slice())
-      );
+    forkJoin([this.lookupService.getDepartments(),this.lookupService.getManufacturers()]).subscribe(result => {
+      const [departments, manufacturers] = result;
 
+      this.lookups.department_owner.options = this.translationService.changeReltoID(departments, "department");
+      this.lookups.manufacturer.options = this.translationService.changeReltoID(manufacturers, "manufacturer");
+     
+      const lookup_names = ["department_owner", "manufacturer"];
+      
+      lookup_names.forEach(lookup_name => {
+        this.lookups[lookup_name].filtered_options = this.form.controls[lookup_name].valueChanges.pipe(
+          startWith(''),
+          map((value: any) => typeof value === "object" ? this.lookups.department_owner.options.find(dept => {return dept.id === value.id}).name : typeof value === 'string' ? value : ""),
+          map((name: any) => name ? this._filter(lookup_name,name) : this.lookups[lookup_name].options.slice())
+        );
+      })
+  
       this.route.params.forEach((params: Params) => {
         if (params['id'] !== undefined) {
   
@@ -115,18 +136,26 @@ export class EquipmentFormComponent implements OnInit {
 
   }
 
-  displayFn = (value: any) => {
+  // FOR LOOKUPS
+
+  genericDisplayFn(value: any, lookup_name: string) {
     if (typeof value === "object" && value !== null) {
       value = value.id
-
     }
-
-    return value ? this.department_owner_options.find(obj => obj.id === value).name : ""
+    return value ? this.lookups[lookup_name].options.find(obj => obj.id === value).name : ""
   }
 
-  private _filter(name: string): any[] {
+  displayDepartmentOwnerFn = (value: any) => {
+    return this.genericDisplayFn(value, "department_owner")
+  }
+
+  displayManufacturerFn = (value: any) => {
+    return this.genericDisplayFn(value, "manufacturer")
+  }
+
+  private _filter(lookup_name:string, name: string): any[] {
     const filterValue = name.toLowerCase();
-    return this.department_owner_options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.lookups[lookup_name].options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   ngOnDestroy() {
@@ -138,7 +167,8 @@ export class EquipmentFormComponent implements OnInit {
     return this.formBuilder.group({
       equipment_id:  [null, Validators.required],
       department_owner: [null ],
-      manufacturer_id: [null],
+      manufacturer: [null ],
+      // manufacturer_id: [null],
       model_number: [null],
       equipment_description: [null]
     });

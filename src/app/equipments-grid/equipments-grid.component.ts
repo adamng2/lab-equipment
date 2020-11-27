@@ -63,9 +63,9 @@ export class EquipmentsGridComponent implements OnInit {
 
     this.columnDefs = [
       { headerName: 'Equipment ID', field: 'equipment_id', minWidth: 160},
-      { headerName: 'New Department Owner', field: 'department_owner', minWidth: 240},
+      // { headerName: 'New Department Owner', field: 'department_owner', minWidth: 240},
       { headerName: 'Description', field: 'equipment_description', minWidth: 240},
-      { headerName: 'Manufacturer', field: 'manufacturer_id', minWidth: 240},
+      // { headerName: 'Manufacturer', field: 'manufacturer_id', minWidth: 240},
       { headerName: 'Model Number', field: 'model_number', minWidth: 200},
 
       { headerName: 'UNSPSC Code', field: 'asset.unspsc_code', minWidth: 240, 
