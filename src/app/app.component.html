@@ -32,6 +32,13 @@
   </div>
   <mat-toolbar style="background-color: white;">
     <mat-toolbar-row>
+      <button
+        class="button"
+        matTooltip="Home"
+        [routerLink]="['/home']" 
+        mat-mini-fab aria-label="">
+        <fa-icon [icon]="faHome" size="lg"></fa-icon>
+      </button>
 
       <span class="toolbar-spacer"></span>
 

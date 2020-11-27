@@ -58,6 +58,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DimensionalFormComponent } from './_forms/dimensional-form/dimensional-form.component';
 import { NgxMarkjsModule } from 'ngx-markjs';
 import { MatTableModule } from '@angular/material/table';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 
 export const APP_DATE_FORMATS = {
@@ -83,6 +84,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 }
 
 const appRoutes: Routes = [
+  { path: 'instructions', component: InstructionsComponent },
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
   { path: 'equipment/:id', component: EquipmentFormComponent },
@@ -116,7 +118,8 @@ const appRoutes: Routes = [
     EquipmentListComponent,
     FlatTreeComponent,
     DimensionalFormComponent,
-    RevisionListComponent
+    RevisionListComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,
