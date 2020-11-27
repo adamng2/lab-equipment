@@ -7,7 +7,7 @@ export class Equipment {
   //base
   equipment_id: string;
 
-  department_owner: string;
+  department_owner?: any;
   equipment_description: string;
   manufacturer_id: string;
   model_number: string;
@@ -23,7 +23,7 @@ export class Equipment {
 
   constructor(options: {
     equipment_id?: string;
-    department_owner?: string;
+    department_owner?: any;
     equipment_description?: string;
     manufacturer_id?: string;
     model_number?: string;
@@ -32,13 +32,13 @@ export class Equipment {
     dimensional?: Dimensional;
     } = {}) {
       this.equipment_id = options.equipment_id || '';
-      this.department_owner = options.department_owner || '';
       this.equipment_description = options.equipment_description || '';
       this.manufacturer_id = options.manufacturer_id || '';
       this.model_number = options.model_number || '';
 
       this.asset = options.asset || null;
       this.dimensional = options.dimensional || null;
+      this.department_owner = options.department_owner || null;
   }
 
 

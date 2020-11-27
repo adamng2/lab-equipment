@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 export interface Changelog {
   id: number;
+  action_by: number;
   action: string;
   field: string;
   collection: string,
@@ -30,6 +31,7 @@ export class ChangelogService {
           changelog.push({
             id,
             collection,
+            action_by: activity.action_by,
             action: activity.action,
             field: changed_field,
             old_value,

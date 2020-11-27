@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { EquipmentService } from '../_services/equipment.service';
+import { LookupService } from '../_services/lookup.service';
+import { TranslationService } from '../_services/translation.service';
 import { LOCALE_ID } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
@@ -26,6 +28,8 @@ import { faClipboard,
 import { Equipment } from '../_model/equipment';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 function _window() : any {
   // return the global native browser window object
@@ -44,6 +48,9 @@ export class EquipmentFormComponent implements OnInit {
   existingEquipmentId = -1; // -1 not existing
   title = "";
 
+  // dropdowns
+  department_owner_options: any[] = [];
+  department_owner_filtered_options: Observable<any[]>;
   
   // icons
   faInfo = faInfo;
@@ -63,7 +70,9 @@ export class EquipmentFormComponent implements OnInit {
     public dialog: MatDialog, 
     private route: ActivatedRoute,
     private router: Router,    
-    private equipmentService: EquipmentService) {
+    private equipmentService: EquipmentService,
+    private translationService: TranslationService,
+    private lookupService: LookupService) {
   }
 
   ngOnInit(): void {
@@ -72,28 +81,52 @@ export class EquipmentFormComponent implements OnInit {
     this.form.addControl("asset", this.assetControls);
     this.form.addControl("dimensional", this.dimensionalControls);
 
+    this.lookupService.getDepartments().subscribe(result => {
+      this.department_owner_options = this.translationService.changeReltoID(result, "department");
+      this.department_owner_filtered_options = this.form.controls.department_owner.valueChanges.pipe(
+        startWith(''),
+        map((value: any) => typeof value === "object" ? this.department_owner_options.find(dept => dept.id === value.id).name : typeof value === 'string' ? value : ""),
+        map((name: any) => name ? this._filter(name) : this.department_owner_options.slice())
+      );
 
-    this.route.params.forEach((params: Params) => {
-      if (params['id'] !== undefined) {
+      this.route.params.forEach((params: Params) => {
+        if (params['id'] !== undefined) {
+  
+          const id = this.existingEquipmentId = +params['id'];
+          //this.navigated = true;
+          this.equipmentService.getEquipment(id).subscribe( result => {
+  
+            this.title = "Edit equipment " + result.equipment_id;
+            //Add id's controls patch sub-objects
+            this.form.get('asset').addControl('id', new FormControl('', Validators.required));
+            this.form.get('dimensional').addControl('id', new FormControl('', Validators.required));
+            // This will throw an error of any of our sub-object have a 
+            // null value i.e. equipment.dimensional = null
+            this.form.patchValue(result);
+            console.log(result );
+          });
+        }else{
+          this.title = "New equipment"
+        }
+      });
 
-        const id = this.existingEquipmentId = +params['id'];
-        //this.navigated = true;
-        this.equipmentService.getEquipment(id).subscribe( result => {
+    })
 
-          this.title = "Edit equipment " + result.equipment_id;
-          //Add id's controls patch sub-objects
-          this.form.get('asset').addControl('id', new FormControl('', Validators.required));
-          this.form.get('dimensional').addControl('id', new FormControl('', Validators.required));
-          // This will throw an error of any of our sub-object have a 
-          // null value i.e. equipment.dimensional = null
-          this.form.patchValue(result);
-          console.log(result );
-        });
-      }else{
-        this.title = "New equipment"
-      }
-    });
 
+  }
+
+  displayFn = (value: any) => {
+    if (typeof value === "object" && value !== null) {
+      value = value.id
+
+    }
+
+    return value ? this.department_owner_options.find(obj => obj.id === value).name : ""
+  }
+
+  private _filter(name: string): any[] {
+    const filterValue = name.toLowerCase();
+    return this.department_owner_options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   ngOnDestroy() {
