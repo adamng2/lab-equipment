@@ -60,6 +60,8 @@ import { NgxMarkjsModule } from 'ngx-markjs';
 import { MatTableModule } from '@angular/material/table';
 import { InstructionsComponent } from './instructions/instructions.component';
 
+// import { FormlyModule } from '@ngx-formly/core';
+// import { FormlyMaterialModule } from '@ngx-formly/material';
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -160,6 +162,8 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     ScrollingModule,
     NgxMarkjsModule,
+    // FormlyModule,
+    // FormlyMaterialModule,
     AgGridModule.withComponents([
 
     ]),

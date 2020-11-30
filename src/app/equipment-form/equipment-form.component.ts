@@ -170,6 +170,7 @@ export class EquipmentFormComponent implements OnInit {
       manufacturer: [null ],
       // manufacturer_id: [null],
       model_number: [null],
+      serial_number: [null],
       equipment_description: [null]
     });
   }

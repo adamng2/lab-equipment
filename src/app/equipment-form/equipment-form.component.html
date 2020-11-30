@@ -75,19 +75,28 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Enter equipment description"
+              formControlName="equipment_description"></textarea>
+          </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Model</mat-label>
+            <mat-label>Model Number</mat-label>
             <input autocomplete="off" matInput placeholder="Enter model number" formControlName="model_number">
             <span matPrefix></span>
             <mat-hint></mat-hint>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea matInput placeholder="Enter equipment description"
-              formControlName="equipment_description"></textarea>
+            <mat-label>Serial Number</mat-label>
+            <input autocomplete="off" matInput placeholder="Enter serial number" formControlName="serial_number">
+            <span matPrefix></span>
+            <mat-hint></mat-hint>
           </mat-form-field>
+
+          
         </div>
       </div>
     </mat-expansion-panel>

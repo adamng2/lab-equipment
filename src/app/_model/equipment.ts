@@ -10,6 +10,7 @@ export class Equipment {
   // manufacturer_id: string;
   manufacturer: any;
   model_number: string;
+  serial_number: string;
 
   //sub-objects
   department_owner?: any;
@@ -28,6 +29,7 @@ export class Equipment {
     equipment_description?: string;
     // manufacturer_id?: string;
     model_number?: string;
+    serial_number?: string;
 
     asset?: Asset;
     dimensional?: Dimensional;
@@ -36,6 +38,7 @@ export class Equipment {
       this.equipment_description = options.equipment_description || '';
       // this.manufacturer_id = options.manufacturer_id || '';
       this.model_number = options.model_number || '';
+      this.serial_number = options.serial_number || '';
 
       this.asset = options.asset || null;
       this.dimensional = options.dimensional || null;
