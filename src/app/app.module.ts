@@ -168,7 +168,7 @@ const appRoutes: Routes = [
 
     ]),
     RouterModule.forRoot(
-      appRoutes , { useHash: true }
+      appRoutes , { useHash: true, relativeLinkResolution: 'legacy' }
     ),
   ],
   providers: [
