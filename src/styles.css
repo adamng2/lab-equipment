@@ -107,3 +107,8 @@ body {
     border-radius: 5px;
 }
 
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}

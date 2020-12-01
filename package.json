@@ -14,14 +14,14 @@
     "@ag-grid-community/angular": "^23.2.1",
     "@ag-grid-enterprise/all-modules": "^23.2.1",
     "@angular/animations": "~11.0.2",
-    "@angular/cdk": "^10.1.1",
+    "@angular/cdk": "^11.0.1",
     "@angular/common": "~11.0.2",
     "@angular/compiler": "~11.0.2",
     "@angular/core": "~11.0.2",
     "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~11.0.2",
     "@angular/localize": "^11.0.2",
-    "@angular/material": "^10.1.1",
+    "@angular/material": "^11.0.1",
     "@angular/platform-browser": "~11.0.2",
     "@angular/platform-browser-dynamic": "~11.0.2",
     "@angular/router": "~11.0.2",
@@ -39,7 +39,9 @@
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "uuid": "^8.3.0",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "@ngx-formly/core": "^5.0.0",
+    "@ngx-formly/material": "^5.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.2",

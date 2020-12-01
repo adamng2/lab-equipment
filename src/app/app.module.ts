@@ -60,8 +60,13 @@ import { NgxMarkjsModule } from 'ngx-markjs';
 import { MatTableModule } from '@angular/material/table';
 import { InstructionsComponent } from './instructions/instructions.component';
 
-// import { FormlyModule } from '@ngx-formly/core';
-// import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FormlyModule } from '@ngx-formly/core';
+
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { CreateLookupComponent } from './create-lookup/create-lookup.component';
+import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
+import { RepeatTypeComponent } from './create-lookup/repeat-section.type';
+
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -87,6 +92,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 
 const appRoutes: Routes = [
   { path: 'instructions', component: InstructionsComponent },
+  { path: 'lookup/create', component: CreateLookupComponent },
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
   { path: 'equipment/:id', component: EquipmentFormComponent },
@@ -121,7 +127,9 @@ const appRoutes: Routes = [
     FlatTreeComponent,
     DimensionalFormComponent,
     RevisionListComponent,
-    InstructionsComponent
+    InstructionsComponent,
+    CreateLookupComponent,
+    RepeatTypeComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,7 +145,7 @@ const appRoutes: Routes = [
     MatAutocompleteModule,
     MatSidenavModule,
     MatCardModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatTabsModule,
     MatBadgeModule,
@@ -162,23 +170,27 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     ScrollingModule,
     NgxMarkjsModule,
-    // FormlyModule,
-    // FormlyMaterialModule,
-    AgGridModule.withComponents([
-
-    ]),
-    RouterModule.forRoot(
-      appRoutes , { useHash: true, relativeLinkResolution: 'legacy' }
-    ),
+    AgGridModule.withComponents([]),
+    RouterModule.forRoot(appRoutes, {
+      useHash: true,
+      relativeLinkResolution: 'legacy',
+    }),
+    FormlyModule.forRoot({
+      extras: { lazyRender: true },
+      types: [{ name: 'repeat', component: RepeatTypeComponent }],
+    }),
+    FormlyMaterialModule,
+    MatNativeDateModule,
+    FormlyMatDatepickerModule,
   ],
   providers: [
-    {provide: DateAdapter, useClass: PickDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+    { provide: DateAdapter, useClass: PickDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
     {
       provide: MAT_RADIO_DEFAULT_OPTIONS,
       useValue: { color: 'primary' },
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

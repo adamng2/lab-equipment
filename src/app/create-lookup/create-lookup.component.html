@@ -1,0 +1,53 @@
+<mat-form-field appearance="fill">
+  <mat-label>Lookup</mat-label>
+  <mat-select (selectionChange)="onCollectionChange()" [(ngModel)]="selectedCollection" name="collection">
+    <mat-option *ngFor="let collection of collectionNames" [value]="collection.value">
+      {{collection.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+
+<form  *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-accordion multi>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon" aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faEdit" size="lg"> </fa-duotone-icon>
+          </div>
+          <div>{{selectedCollection | titlecase}}</div>
+        </div>
+      </mat-expansion-panel-header>
+
+      <div class="section-form">
+        <div fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="20px">
+          <formly-form
+            [model]="model"
+            [fields]="fields"
+            [options]="options"
+            [form]="form"
+          ></formly-form>
+        </div>
+      </div>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+    <button mat-flat-button color="success">Save</button>
+    <div *ngIf="success" class="icon" aria-label="Icon displaying form section">
+      <fa-duotone-icon [icon]="faCheckSquare" size="lg"> </fa-duotone-icon>
+      Complete
+    </div>
+    <div *ngIf="error" class="icon" aria-label="Icon displaying form section">
+      <fa-duotone-icon [icon]="faTimesSquare" size="lg"> </fa-duotone-icon>
+      Error
+    </div>
+    </mat-expansion-panel>
+    
+  </mat-accordion>
+
+  
+</form>

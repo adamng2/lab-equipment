@@ -14,6 +14,17 @@ export class LookupService {
 
   constructor(private http: HttpClient, public authService: AuthService) {}
 
+  public getCollection(collection: string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + this.authService.currentUserValue?.token
+    })
+
+    return this.http.get<any[]>
+      ( this._baseUrl + "/collections/" + collection, { headers: headers })
+      .pipe( (map ( (result: any) => result.data )))
+  }
+
   public getDepartments(lang: string = "en"): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,4 +46,15 @@ export class LookupService {
       ( this._baseUrl + "/items/manufacturer_translations?fields=manufacturer,name&filter[language]=en", { headers: headers })
       .pipe( (map ( (result: any) => result.data )))
   }
+
+  public createLookup(collection_name: string, data: any[]): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + this.authService.currentUserValue?.token
+    })
+    const endPoint = this._baseUrl + "/items/" + collection_name + "?fields=*.*";
+    return this.http.post<any>( endPoint,data );
+  }
+
+
 }
