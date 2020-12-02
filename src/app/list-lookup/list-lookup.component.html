@@ -1,0 +1,34 @@
+
+<form>
+  <mat-form-field appearance="fill">
+    <mat-label>Lookup</mat-label>
+    <mat-select
+      (selectionChange)="onCollectionChange()"
+      [(ngModel)]="selectedCollection"
+      name="collection"
+    >
+      <mat-option
+        *ngFor="let collection of collectionNames"
+        [value]="collection.value"
+      >
+        {{ collection.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+
+<ag-grid-angular
+    style="width: 100%; height: 100%;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [modules]="modules"
+    [masterDetail]="true"
+    [detailCellRendererParams]="detailCellRendererParams"
+    (firstDataRendered)="onFirstDataRendered($event)"
+    (gridReady)="onGridReady($event)"
+    [frameworkComponents]="frameworkComponents"
+    >
+    
+</ag-grid-angular>

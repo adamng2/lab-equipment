@@ -43,6 +43,7 @@ import { faClipboard, faGlobe } from '@fortawesome/pro-duotone-svg-icons';
         </div>
       </mat-expansion-panel>
     </mat-accordion>
+    <br>
   `,
 })
 export class RepeatTypeComponent extends FieldArrayType {

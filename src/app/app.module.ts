@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -39,7 +40,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 import { AgGridModule } from '@ag-grid-community/angular';
-import { AllModules } from "@ag-grid-enterprise/all-modules";
+// import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { NumberDirective } from './_directives/numbers-only.directive';
 import { AgGridResizeDirective } from './_directives/ag-grid-resize.directive';
 
@@ -66,7 +67,9 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { CreateLookupComponent } from './create-lookup/create-lookup.component';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { RepeatTypeComponent } from './create-lookup/repeat-section.type';
+import { ListLookupComponent } from './list-lookup/list-lookup.component';
 
+import {BtnCellRenderer} from "./list-lookup/btn-cell-renderer.component";
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -93,6 +96,7 @@ export class PickDateAdapter extends NativeDateAdapter {
 const appRoutes: Routes = [
   { path: 'instructions', component: InstructionsComponent },
   { path: 'lookup/create', component: CreateLookupComponent },
+  { path: 'lookup/list', component: ListLookupComponent },
   { path: 'equipments', component: EquipmentListComponent },
   { path: 'equipment', component: EquipmentFormComponent },
   { path: 'equipment/:id', component: EquipmentFormComponent },
@@ -130,6 +134,8 @@ const appRoutes: Routes = [
     InstructionsComponent,
     CreateLookupComponent,
     RepeatTypeComponent,
+    ListLookupComponent,
+    BtnCellRenderer
   ],
   imports: [
     BrowserModule,
@@ -170,7 +176,8 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     ScrollingModule,
     NgxMarkjsModule,
-    AgGridModule.withComponents([]),
+    MatMenuModule,
+    AgGridModule.withComponents([BtnCellRenderer]),
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       relativeLinkResolution: 'legacy',

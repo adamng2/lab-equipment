@@ -25,6 +25,23 @@ export class LookupService {
       .pipe( (map ( (result: any) => result.data )))
   }
 
+  public getLookup(collection_name: string, id?: number | string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + this.authService.currentUserValue?.token
+    })
+    let url: string;
+    if (id) {
+      url = this._baseUrl + "/items/" + collection_name +"/"+id+ "?fields=*.*"
+    } else {
+      url = this._baseUrl + "/items/" + collection_name + "?fields=*.*"
+    }
+
+    return this.http.get<any[]>
+      ( url, { headers: headers })
+      .pipe( (map ( (result: any) => result.data )))
+  }
+
   public getDepartments(lang: string = "en"): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

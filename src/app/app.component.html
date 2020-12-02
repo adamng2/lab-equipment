@@ -55,10 +55,13 @@
         <fa-icon [icon]="faPlus" size="lg"></fa-icon>
       </button>
       <button 
-        matTooltip="Add lookup"
-        [routerLink]="['/lookup/create']" mat-mini-fab aria-label="" class="button">
+        [matMenuTriggerFor]="beforeMenu" matTooltip="Lookups" mat-mini-fab aria-label="" class="button">
         <fa-icon [icon]="faListUl" size="lg"></fa-icon>
       </button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="['/lookup/create']"><fa-icon [icon]="faPlusCircle" size="lg"></fa-icon> Create</button>
+        <button mat-menu-item [routerLink]="['/lookup/list']"><fa-icon [icon]="faBars" size="lg"></fa-icon> List</button>
+      </mat-menu>
       <button mat-mini-fab aria-label="" class="button">
         <fa-icon [icon]="faUser" size="lg"></fa-icon>
       </button>
