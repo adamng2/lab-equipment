@@ -245,7 +245,9 @@ export class EquipmentFormComponent implements OnInit {
     const dialogRef = this.dialog.open(AlertDialogComponent, {
       width: '400px',
       data:  { 
-          id: id
+          id: id,
+          msg: "equipment updated",
+          isSuccess: true
       },
       // disableClose: true,
       position: { top: "100px"}

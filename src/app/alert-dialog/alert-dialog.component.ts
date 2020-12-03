@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { faCheckCircle } from '@fortawesome/pro-duotone-svg-icons';
+import { faCheckCircle, faCheckSquare, faTimesCircle, IconDefinition } from '@fortawesome/pro-duotone-svg-icons';
 import { environment } from 'src/environments/environment';
 
 
@@ -8,7 +8,8 @@ export interface DialogData{
   id: string;
   key: string;
   recipient: string;
-
+  msg: string;
+  isSuccess: boolean;
 }
 
 
@@ -22,13 +23,12 @@ export class AlertDialogComponent {
 
   private _appUrl = `${environment.appUrl}`;
   
-  faCheckCircle = faCheckCircle;
+  icon: IconDefinition
 
   constructor(
     public dialogRef: MatDialogRef<AlertDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-
-      console.log( data );
+      this.icon = data.isSuccess ? faCheckSquare : faTimesCircle
   }
     
     

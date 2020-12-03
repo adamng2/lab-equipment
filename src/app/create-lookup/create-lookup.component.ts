@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import {
   faEdit,
@@ -9,6 +10,7 @@ import {
 } from '@fortawesome/pro-duotone-svg-icons';
 import { LookupService } from '../_services/lookup.service';
 import { directus_fields } from '../constants';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 
 interface GenericSelect {
   value: string;
@@ -21,11 +23,6 @@ interface GenericSelect {
   styleUrls: ['./create-lookup.component.css'],
 })
 export class CreateLookupComponent implements OnInit {
-  constructor(
-    private lookupService: LookupService,
-    private route: ActivatedRoute
-  ) {}
-
   // Icons
   faEdit = faEdit;
   faCheckSquare = faCheckSquare;
@@ -45,24 +42,15 @@ export class CreateLookupComponent implements OnInit {
   selectedCollection: string = 'manufacturer';
 
   // Attributes
-  success: boolean;
-  error: boolean;
   isLoading: boolean;
   editingMode: boolean;
 
-  onSubmit() {
-    console.log(this.model);
-    this.lookupService
-      .createLookup(this.selectedCollection, this.model)
-      .subscribe(
-        () => ((this.success = true), (this.error = false)),
-        () => ((this.error = true), (this.success = false))
-      );
-  }
-
-  onCollectionChange() {
-    this.updateForm();
-  }
+  constructor(
+    private lookupService: LookupService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((result) => {
@@ -78,6 +66,30 @@ export class CreateLookupComponent implements OnInit {
       }
 
       this.updateForm();
+    });
+  }
+
+  onCollectionChange() {
+    this.updateForm();
+  }
+
+  openDialog(isSuccess: boolean, msg: string, id?: number): void {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '400px',
+      data: {
+        id,
+        msg,
+        isSuccess,
+      },
+      position: { top: '100px' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (isSuccess) {
+        this.router.navigateByUrl(
+          'lookup/create?collection=' + this.selectedCollection + '&id=' + id
+        );
+      }
     });
   }
 
@@ -170,11 +182,16 @@ export class CreateLookupComponent implements OnInit {
         .toPromise();
 
       const fields = result.fields;
+      this.model.translations = [{ language: 'en' }, { language: 'fr' }];
+      if (this.editingMode) {
+        this.model.translations[0].id = object.translations[0].id;
+        this.model.translations[1].id = object.translations[1].id;
+      }
       Object.keys(fields).forEach((field) => {
         if (directus_fields.includes(field)) {
           return;
         }
-        this.model.translations = [{ language: 'en' }, { language: 'fr' }];
+        
         if (this.editingMode) {
           this.model.translations[0][field] = object.translations[0][field];
           this.model.translations[1][field] = object.translations[1][field];
@@ -182,7 +199,7 @@ export class CreateLookupComponent implements OnInit {
           this.model.translations[0][field] = undefined;
           this.model.translations[1][field] = undefined;
         }
-
+        // Create other mappings here once needed
         if (fields[field].interface === 'text-input') {
           new_fields.push({
             key: 'translations',
@@ -209,5 +226,24 @@ export class CreateLookupComponent implements OnInit {
       this.fields = new_fields;
       this.isLoading = false;
     }
+  }
+
+  save() {
+    console.log(this.model)
+    let object_id: string | number = -1;
+
+    if (this.editingMode) {
+      object_id = this.getURLParams()[1];
+    }
+    this.lookupService
+      .saveLookup(this.selectedCollection, this.model, object_id)
+      .subscribe(
+        (result: any) => {
+          this.openDialog(true, `Lookup (${this.selectedCollection}) ${this.editingMode ? "Updated" : "Created"}`, result.data.id);
+        },
+        (err: any) => {
+          this.openDialog(false, "Error");
+        }
+      );
   }
 }

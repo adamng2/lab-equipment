@@ -19,7 +19,7 @@
 
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-<form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="save()">
   <mat-accordion multi>
     <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
@@ -45,18 +45,6 @@
       <mat-divider></mat-divider>
       <br>
       <button mat-flat-button color="success">Save</button>
-      <div
-        *ngIf="success"
-        class="icon"
-        aria-label="Icon displaying form section"
-      >
-        <fa-duotone-icon [icon]="faCheckSquare" size="lg"> </fa-duotone-icon>
-        Complete
-      </div>
-      <div *ngIf="error" class="icon" aria-label="Icon displaying form section">
-        <fa-duotone-icon [icon]="faTimesSquare" size="lg"> </fa-duotone-icon>
-        Error
-      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </form>
