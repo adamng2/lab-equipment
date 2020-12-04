@@ -8,6 +8,7 @@ import {
   faCheckSquare,
   faTimesSquare,
 } from '@fortawesome/pro-duotone-svg-icons';
+import { isEmpty as _isEmpty } from 'lodash';
 import { LookupService } from '../_services/lookup.service';
 import { directus_fields } from '../constants';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
@@ -62,6 +63,10 @@ export class CreateLookupComponent implements OnInit {
         this.selectedCollection = collection_name;
       } else {
         this.editingMode = false;
+        if (!_isEmpty(this.model)) {
+          this.options.resetModel();
+        }
+        
         this.selectedCollection = 'manufacturer';
       }
 
@@ -143,7 +148,7 @@ export class CreateLookupComponent implements OnInit {
       if (this.editingMode) {
         common_options['defaultValue'] = object[field];
       }
-
+      // create other mappings here if needed
       const interface_directus_mapper = {
         date: {
           ...common_options,

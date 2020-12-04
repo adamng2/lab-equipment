@@ -76,7 +76,6 @@ export class ListLookupComponent implements OnInit {
               return { field: key };
             }
           );
-          console.log(detailColumnDefs);
           this.detailCellRendererParams = {
             detailGridOptions: {
               columnDefs: detailColumnDefs,
