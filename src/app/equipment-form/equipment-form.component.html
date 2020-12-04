@@ -310,6 +310,22 @@
       </div>
     </mat-expansion-panel>
 
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="icon"  aria-label="Icon displaying form section">
+            <fa-duotone-icon [icon]="faBuilding" size="lg" primaryColor="blue" primaryOpacity=".8"
+              secondaryColor="yellow" secondaryOpacity=".8">
+            </fa-duotone-icon>
+          </div>
+          <div>Department Information</div>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="section-form">
+         <departmental-form [department_information]="form.get('department_information')"></departmental-form>
+      </div>
+    </mat-expansion-panel>
+
     <mat-expansion-panel style="display: none;">
       <mat-expansion-panel-header>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">

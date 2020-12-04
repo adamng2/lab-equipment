@@ -57,6 +57,7 @@ import { RevisionListComponent } from './revision-list/revision-list.component';
 import { FlatTreeComponent } from './flat-tree/flat-tree.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DimensionalFormComponent } from './_forms/dimensional-form/dimensional-form.component';
+import { DepartmentInformationFormComponent } from './_forms/department-information-form/department-information-form.component';
 import { NgxMarkjsModule } from 'ngx-markjs';
 import { MatTableModule } from '@angular/material/table';
 import { InstructionsComponent } from './instructions/instructions.component';
@@ -130,6 +131,7 @@ const appRoutes: Routes = [
     EquipmentListComponent,
     FlatTreeComponent,
     DimensionalFormComponent,
+    DepartmentInformationFormComponent,
     RevisionListComponent,
     InstructionsComponent,
     CreateLookupComponent,

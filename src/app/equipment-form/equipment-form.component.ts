@@ -13,6 +13,7 @@ import {
 } from '@angular/material/snack-bar';
 
 import { faClipboard, 
+  faBuilding,
   faUserEdit,
   faSave, 
   faClipboardList, 
@@ -67,6 +68,7 @@ export class EquipmentFormComponent implements OnInit {
   faDollarSign = faDollarSign;
   faPen = faPen;  
   faUserEdit = faUserEdit;
+  faBuilding = faBuilding;
   
   editingMode: boolean = false;
   
@@ -79,10 +81,10 @@ export class EquipmentFormComponent implements OnInit {
     private translationService: TranslationService,
     private lookupService: LookupService) {
       this.lookups = {
-        // department_owner: {
-        //   options: [],
-        //   filtered_options: undefined
-        // },
+        department_owner: {
+          options: [],
+          filtered_options: undefined
+        },
         manufacturer: {
           options: [],
           filtered_options: undefined
@@ -95,10 +97,10 @@ export class EquipmentFormComponent implements OnInit {
     this.form = this.mainControls;
     this.form.addControl("asset", this.assetControls);
     this.form.addControl("dimensional", this.dimensionalControls);
-    forkJoin([this.lookupService.getDepartments(),this.lookupService.getManufacturers()]).subscribe(result => {
-      const [departments, manufacturers] = result;
+    this.form.addControl("department_information", this.departmentInformationControls);
+    forkJoin([this.lookupService.getManufacturers()]).subscribe(result => {
+      const [manufacturers] = result;
 
-      // this.lookups.department_owner.options = this.translationService.changeReltoID(departments, "department");
       this.lookups.manufacturer.options = this.translationService.changeReltoID(manufacturers, "manufacturer");
      
       const lookup_names = ["manufacturer"];
@@ -122,10 +124,12 @@ export class EquipmentFormComponent implements OnInit {
             //Add id's controls patch sub-objects
             this.form.get('asset').addControl('id', new FormControl('', Validators.required));
             this.form.get('dimensional').addControl('id', new FormControl('', Validators.required));
+            this.form.get('department_information').addControl('id', new FormControl('', Validators.required));
             // This will throw an error of any of our sub-object have a 
             // null value i.e. equipment.dimensional = null
-            this.form.patchValue(result);
             console.log(result );
+            this.form.patchValue(result);
+            
           });
         }else{
           this.editingMode = false;
@@ -145,10 +149,6 @@ export class EquipmentFormComponent implements OnInit {
       value = value.id
     }
     return value ? this.lookups[lookup_name].options.find(obj => obj.id === value).name : ""
-  }
-
-  displayDepartmentOwnerFn = (value: any) => {
-    return this.genericDisplayFn(value, "department_owner")
   }
 
   displayManufacturerFn = (value: any) => {
@@ -214,6 +214,17 @@ export class EquipmentFormComponent implements OnInit {
       clearance_length: [null],
       equipment_weight: [null],
   
+      notes: [null],
+    });
+
+  }
+
+  get departmentInformationControls(){
+    return this.formBuilder.group({
+      department_owner: [null],
+      address: [null],
+      contact_name: [null],
+      contact_email: [null],
       notes: [null],
     });
 
