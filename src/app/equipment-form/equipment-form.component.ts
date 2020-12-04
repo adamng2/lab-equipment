@@ -66,7 +66,9 @@ export class EquipmentFormComponent implements OnInit {
   faPencilRuler = faPencilRuler;
   faDollarSign = faDollarSign;
   faPen = faPen;  
-  faUserEdit = faUserEdit;  
+  faUserEdit = faUserEdit;
+  
+  editingMode: boolean = false;
   
   constructor(private formBuilder: FormBuilder,
     @Inject(LOCALE_ID) private locale: string,
@@ -77,10 +79,10 @@ export class EquipmentFormComponent implements OnInit {
     private translationService: TranslationService,
     private lookupService: LookupService) {
       this.lookups = {
-        department_owner: {
-          options: [],
-          filtered_options: undefined
-        },
+        // department_owner: {
+        //   options: [],
+        //   filtered_options: undefined
+        // },
         manufacturer: {
           options: [],
           filtered_options: undefined
@@ -93,26 +95,25 @@ export class EquipmentFormComponent implements OnInit {
     this.form = this.mainControls;
     this.form.addControl("asset", this.assetControls);
     this.form.addControl("dimensional", this.dimensionalControls);
-
     forkJoin([this.lookupService.getDepartments(),this.lookupService.getManufacturers()]).subscribe(result => {
       const [departments, manufacturers] = result;
 
-      this.lookups.department_owner.options = this.translationService.changeReltoID(departments, "department");
+      // this.lookups.department_owner.options = this.translationService.changeReltoID(departments, "department");
       this.lookups.manufacturer.options = this.translationService.changeReltoID(manufacturers, "manufacturer");
      
-      const lookup_names = ["department_owner", "manufacturer"];
+      const lookup_names = ["manufacturer"];
       
       lookup_names.forEach(lookup_name => {
         this.lookups[lookup_name].filtered_options = this.form.controls[lookup_name].valueChanges.pipe(
           startWith(''),
-          map((value: any) => typeof value === "object" ? this.lookups.department_owner.options.find(dept => {return dept.id === value.id}).name : typeof value === 'string' ? value : ""),
+          map((value: any) => typeof value === "object" ? this.lookups[lookup_name].options.find(dept => {return dept.id === value.id}).name : typeof value === 'string' ? value : ""),
           map((name: any) => name ? this._filter(lookup_name,name) : this.lookups[lookup_name].options.slice())
         );
       })
   
       this.route.params.forEach((params: Params) => {
         if (params['id'] !== undefined) {
-  
+          this.editingMode = true;
           const id = this.existingEquipmentId = +params['id'];
           //this.navigated = true;
           this.equipmentService.getEquipment(id).subscribe( result => {
@@ -127,6 +128,7 @@ export class EquipmentFormComponent implements OnInit {
             console.log(result );
           });
         }else{
+          this.editingMode = false;
           this.title = "New equipment"
         }
       });
@@ -166,12 +168,15 @@ export class EquipmentFormComponent implements OnInit {
    get mainControls(){
     return this.formBuilder.group({
       equipment_id:  [null, Validators.required],
-      department_owner: [null ],
+      // department_owner: [null ],
+
+      name: [null ],
       manufacturer: [null ],
-      // manufacturer_id: [null],
       model_number: [null],
       serial_number: [null],
-      equipment_description: [null]
+      equipment_description: [null],
+      link_to_manual: [null],
+      notes: [null]
     });
   }
 
@@ -201,23 +206,15 @@ export class EquipmentFormComponent implements OnInit {
 
   get dimensionalControls(){
     return this.formBuilder.group({
-      height: [null],
-      width: [null ],
-      depth: [null ],
-      bench_spacing: [null],
+      equipment_width: [null],
+      footprint_length: [null],
+      footprint_height: [null],
   
-      is_stand_alone: [null],
-      is_relocatable: [null],
-      weight: [null],
+      clearance_width: [null],
+      clearance_length: [null],
+      equipment_weight: [null],
   
-      is_clean: [null ],
-      is_humidity_sensitive: [null ],
-      is_static_sensitive: [null ],
-      is_light_sensitive: [null ],
-      is_noise_sensitive: [null ],
-      is_air_pressure_sensitive: [null ],
-      is_vibration_sensitive: [null ],
-      is_floor_or_bench: [null ]
+      notes: [null],
     });
 
   }
