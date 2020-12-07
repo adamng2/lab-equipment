@@ -237,6 +237,12 @@ export class EquipmentFormComponent implements OnInit {
   get electrical(){
     return this.formBuilder.group({
       voltage: [null],
+      current: [null],
+      phase: [null],
+      has_dedicated_circuit: [null],
+      backup_power: [null],
+      other_power: [null],
+      notes: [null],
       // non-directus
       voltage_units: ["vac"],
     });
