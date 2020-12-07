@@ -326,7 +326,7 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel style="display: none;">
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <div class="icon"  aria-label="Icon displaying form section">
@@ -338,6 +338,7 @@
         </div>
       </mat-expansion-panel-header>
       <div class="section-form">
+        <electrical-form [electrical]="form.get('electrical')"></electrical-form>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

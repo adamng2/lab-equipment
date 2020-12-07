@@ -49,7 +49,7 @@ export class LookupService {
     })
 
     return this.http.get<any[]>
-      (this._baseUrl + "/items/department_translations?fields=department,name&filter[language]=en", { headers: headers })
+      (this._baseUrl + "/items/department_translations?fields=department,name,acronym&filter[language]=en", { headers: headers })
       .pipe((map((result: any) => result.data)))
   }
 

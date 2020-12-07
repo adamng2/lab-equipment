@@ -1,0 +1,28 @@
+<div
+  [formGroup]="electrical"
+  fxLayout="column"
+  fxLayoutAlign="start stretch"
+  fxLayoutGap="20px"
+>
+
+<mat-form-field fxFlex="70">
+    <mat-label>Voltage</mat-label>
+    <input
+    autocomplete="off"
+    matInput
+    placeholder="Enter voltage"
+    formControlName="voltage"
+    
+    (change)="voltageChanged()"
+    />
+    <span matPrefix></span>
+    <mat-hint>{{voltageUnitsHint}}</mat-hint>
+</mat-form-field>
+
+
+<mat-button-toggle-group  formControlName="voltage_units" (change)="unitsChanged()" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="vac" ngDefaultControl>VAC</mat-button-toggle>
+    <mat-button-toggle value="vdc" ngDefaultControl>VDC</mat-button-toggle>
+</mat-button-toggle-group>
+
+</div>

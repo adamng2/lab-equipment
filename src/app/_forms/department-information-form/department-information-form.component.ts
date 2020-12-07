@@ -30,8 +30,8 @@ export class DepartmentInformationFormComponent implements OnInit {
 
   ngOnInit(): void {
     forkJoin([this.lookupService.getDepartments()]).subscribe(result => {
-      const [departments] = result;
-
+      let [departments] = result;
+      departments = departments.map(department => {return {...department,name: `${department.name} (${department.acronym})` }})
       this.lookups.department_owner.options = this.translationService.changeReltoID(departments, "department");
       const lookup_names = ["department_owner"];
       
@@ -47,7 +47,7 @@ export class DepartmentInformationFormComponent implements OnInit {
 
   private _filter(lookup_name:string, name: string): any[] {
     const filterValue = name.toLowerCase();
-    return this.lookups[lookup_name].options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.lookups[lookup_name].options.filter(option => option.name.toLowerCase().indexOf(filterValue) !== -1);
   }
 
   genericDisplayFn(value: any, lookup_name: string) {

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -58,6 +58,7 @@ import { FlatTreeComponent } from './flat-tree/flat-tree.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DimensionalFormComponent } from './_forms/dimensional-form/dimensional-form.component';
 import { DepartmentInformationFormComponent } from './_forms/department-information-form/department-information-form.component';
+import { ElectricalFormComponent } from './_forms/electrical-form/electrical-form.component';
 import { NgxMarkjsModule } from 'ngx-markjs';
 import { MatTableModule } from '@angular/material/table';
 import { InstructionsComponent } from './instructions/instructions.component';
@@ -132,6 +133,7 @@ const appRoutes: Routes = [
     FlatTreeComponent,
     DimensionalFormComponent,
     DepartmentInformationFormComponent,
+    ElectricalFormComponent,
     RevisionListComponent,
     InstructionsComponent,
     CreateLookupComponent,
@@ -177,6 +179,7 @@ const appRoutes: Routes = [
     MatTableModule,
     FontAwesomeModule,
     ScrollingModule,
+    MatButtonToggleModule,
     NgxMarkjsModule,
     MatMenuModule,
     AgGridModule.withComponents([BtnCellRenderer]),

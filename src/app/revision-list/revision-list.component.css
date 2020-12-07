@@ -3,6 +3,11 @@ table {
   min-width: 1000px;
 }
 
+.mat-column-action_by {
+  width: 10%;
+}
+
+
 .mat-column-date {
   width: 10%;
 }
