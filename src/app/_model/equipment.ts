@@ -8,7 +8,7 @@ export class Equipment {
   //base
   equipment_id: string;
   name: string;
-  manufacturer: any;
+  producer: any;
   model_number: string;
   serial_number: string;
   equipment_description: string;
@@ -32,7 +32,7 @@ export class Equipment {
     notes?: string;
     equipment_id?: string;
     // department_owner?: any;
-    manufacturer?: any;
+    producer?: any;
     equipment_description?: string;
     // manufacturer_id?: string;
     model_number?: string;
@@ -53,7 +53,7 @@ export class Equipment {
       this.asset = options.asset || null;
       this.dimensional = options.dimensional || null;
       // this.department_owner = options.department_owner || null;
-      this.manufacturer = options.manufacturer || null;
+      this.producer = options.producer || null;
   }
 
 

@@ -38,9 +38,9 @@ export class CreateLookupComponent implements OnInit {
   // Dropdown
   collectionNames: GenericSelect[] = [
     { value: 'department', viewValue: 'Department' },
-    { value: 'manufacturer', viewValue: 'Manufacturer' },
+    { value: 'producer', viewValue: 'Producer' },
   ];
-  selectedCollection: string = 'manufacturer';
+  selectedCollection: string = 'department';
 
   // Attributes
   isLoading: boolean;
@@ -67,7 +67,7 @@ export class CreateLookupComponent implements OnInit {
           this.options.resetModel();
         }
         
-        this.selectedCollection = 'manufacturer';
+        this.selectedCollection = 'department';
       }
 
       this.updateForm();
@@ -188,10 +188,12 @@ export class CreateLookupComponent implements OnInit {
 
       const fields = result.fields;
       this.model.translations = [{ language: 'en' }, { language: 'fr' }];
+
       if (this.editingMode) {
         this.model.translations[0].id = object.translations[0].id;
         this.model.translations[1].id = object.translations[1].id;
       }
+      console.log(this.model)
       Object.keys(fields).forEach((field) => {
         if (directus_fields.includes(field)) {
           return;
@@ -201,8 +203,11 @@ export class CreateLookupComponent implements OnInit {
           this.model.translations[0][field] = object.translations[0][field];
           this.model.translations[1][field] = object.translations[1][field];
         } else {
-          this.model.translations[0][field] = undefined;
-          this.model.translations[1][field] = undefined;
+          if (field !== "language") {
+            this.model.translations[0][field] = undefined;
+            this.model.translations[1][field] = undefined;
+          }
+         
         }
         // Create other mappings here once needed
         if (fields[field].interface === 'text-input') {
@@ -225,6 +230,7 @@ export class CreateLookupComponent implements OnInit {
           });
         }
       });
+      
       this.fields = new_fields;
       this.isLoading = false;
     } else {

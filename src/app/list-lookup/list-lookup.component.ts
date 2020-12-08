@@ -18,7 +18,7 @@ export class ListLookupComponent implements OnInit {
 
   public collectionNames: any[] = [
     { value: 'department', viewValue: 'Department' },
-    { value: 'manufacturer', viewValue: 'Manufacturer' },
+    { value: 'producer', viewValue: 'Producer' },
   ];
   public selectedCollection: string = 'department';
 

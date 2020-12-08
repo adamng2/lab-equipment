@@ -72,6 +72,7 @@ import { RepeatTypeComponent } from './create-lookup/repeat-section.type';
 import { ListLookupComponent } from './list-lookup/list-lookup.component';
 
 import {BtnCellRenderer} from "./list-lookup/btn-cell-renderer.component";
+import { MechanicalFormComponent } from './_forms/mechanical-form/mechanical-form.component';
 
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
@@ -134,6 +135,7 @@ const appRoutes: Routes = [
     DimensionalFormComponent,
     DepartmentInformationFormComponent,
     ElectricalFormComponent,
+    MechanicalFormComponent,
     RevisionListComponent,
     InstructionsComponent,
     CreateLookupComponent,

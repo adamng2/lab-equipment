@@ -3,7 +3,7 @@ export const conversionMap = {
     "voltage": {
       "units_key": "voltage_units",
       "vac": 1,
-      "vdc": 1 / Math.sqrt(2)
+      "vdc": 0.7071
     }
   }
 }

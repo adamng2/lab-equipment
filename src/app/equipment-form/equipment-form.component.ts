@@ -87,7 +87,7 @@ export class EquipmentFormComponent implements OnInit {
           options: [],
           filtered_options: undefined
         },
-        manufacturer: {
+        producer: {
           options: [],
           filtered_options: undefined
         }
@@ -101,12 +101,12 @@ export class EquipmentFormComponent implements OnInit {
     this.form.addControl("dimensional", this.dimensionalControls);
     this.form.addControl("department_information", this.departmentInformationControls);
     this.form.addControl("electrical", this.electrical);
-    forkJoin([this.lookupService.getManufacturers()]).subscribe(result => {
-      const [manufacturers] = result;
+    forkJoin([this.lookupService.getProducers()]).subscribe(result => {
+      const [producers] = result;
 
-      this.lookups.manufacturer.options = this.translationService.changeReltoID(manufacturers, "manufacturer");
-     
-      const lookup_names = ["manufacturer"];
+      this.lookups.producer.options = this.translationService.changeReltoID(producers, "producer");
+      console.log(this.lookups.producer.options)
+      const lookup_names = ["producer"];
       
       lookup_names.forEach(lookup_name => {
         this.lookups[lookup_name].filtered_options = this.form.controls[lookup_name].valueChanges.pipe(
@@ -155,8 +155,8 @@ export class EquipmentFormComponent implements OnInit {
     return value ? this.lookups[lookup_name].options.find(obj => obj.id === value).name : ""
   }
 
-  displayManufacturerFn = (value: any) => {
-    return this.genericDisplayFn(value, "manufacturer")
+  displayProducerFn = (value: any) => {
+    return this.genericDisplayFn(value, "producer")
   }
 
   private _filter(lookup_name:string, name: string): any[] {
@@ -175,7 +175,7 @@ export class EquipmentFormComponent implements OnInit {
       // department_owner: [null ],
 
       name: [null ],
-      manufacturer: [null ],
+      producer: [null ],
       model_number: [null],
       serial_number: [null],
       equipment_description: [null],
