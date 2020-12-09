@@ -221,6 +221,11 @@ export class EquipmentFormComponent implements OnInit {
       notes: [null],
       // non-directus
       equipment_width_units: ["cm"],
+      footprint_length_units: ["cm"],
+      footprint_height_units: ["cm"],
+      clearance_width_units: ["cm"],
+      clearance_length_units: ["cm"],
+      equipment_weight_units: ["kg"],
     });
 
   }

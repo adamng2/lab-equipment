@@ -14,38 +14,72 @@
   </mat-button-toggle-group>
 
   <mat-form-field>
-    <mat-label>Footprint Length</mat-label>
+    <mat-label>Footprint Length (cm)</mat-label>
     <input autocomplete="off" numbersOnly matInput placeholder="Enter in metric" formControlName="footprint_length">
     <span matPrefix></span>
-    <mat-hint></mat-hint>
+    <mat-hint>The above value will be converted to cm before being stored in the database</mat-hint>
   </mat-form-field>
+
+  <mat-button-toggle-group formControlName="footprint_length_units" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="m" ngDefaultControl>m</mat-button-toggle>
+    <mat-button-toggle value="cm" ngDefaultControl>cm</mat-button-toggle>
+    <mat-button-toggle value="ft" ngDefaultControl>ft</mat-button-toggle>
+    <mat-button-toggle value="in" ngDefaultControl>in</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <mat-form-field>
-    <mat-label>Footprint Height</mat-label>
+    <mat-label>Footprint Height (cm)</mat-label>
     <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="footprint_height">
     <span matPrefix></span>
-    <mat-hint></mat-hint>
+    <mat-hint>The above value will be converted to cm before being stored in the database</mat-hint>
   </mat-form-field>
 
+  <mat-button-toggle-group formControlName="footprint_height_units" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="m" ngDefaultControl>m</mat-button-toggle>
+    <mat-button-toggle value="cm" ngDefaultControl>cm</mat-button-toggle>
+    <mat-button-toggle value="ft" ngDefaultControl>ft</mat-button-toggle>
+    <mat-button-toggle value="in" ngDefaultControl>in</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <mat-form-field>
-    <mat-label>Clearance Required Width</mat-label>
+    <mat-label>Clearance Required Width (cm)</mat-label>
     <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="clearance_width">
     <span matPrefix></span>
-    <mat-hint></mat-hint>
+    <mat-hint>The above value will be converted to cm before being stored in the database</mat-hint>
   </mat-form-field>
 
+  <mat-button-toggle-group formControlName="clearance_width_units" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="m" ngDefaultControl>m</mat-button-toggle>
+    <mat-button-toggle value="cm" ngDefaultControl>cm</mat-button-toggle>
+    <mat-button-toggle value="ft" ngDefaultControl>ft</mat-button-toggle>
+    <mat-button-toggle value="in" ngDefaultControl>in</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <mat-form-field>
-    <mat-label>Clearance Required Length</mat-label>
+    <mat-label>Clearance Required Length (cm)</mat-label>
     <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="clearance_length">
     <span matPrefix></span>
-    <mat-hint></mat-hint>
+    <mat-hint>The above value will be converted to cm before being stored in the database</mat-hint>
   </mat-form-field>
 
+  <mat-button-toggle-group formControlName="clearance_length_units" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="m" ngDefaultControl>m</mat-button-toggle>
+    <mat-button-toggle value="cm" ngDefaultControl>cm</mat-button-toggle>
+    <mat-button-toggle value="ft" ngDefaultControl>ft</mat-button-toggle>
+    <mat-button-toggle value="in" ngDefaultControl>in</mat-button-toggle>
+  </mat-button-toggle-group>
+
   <mat-form-field>
-    <mat-label>Equipment Weight</mat-label>
+    <mat-label>Equipment Weight (kg)</mat-label>
     <input autocomplete="off" matInput numbersOnly placeholder="Enter in metric" formControlName="equipment_weight">
     <span matPrefix></span>
-    <mat-hint></mat-hint>
+    <mat-hint>The above value will be converted to kg before being stored in the database</mat-hint>
   </mat-form-field>
+
+  <mat-button-toggle-group formControlName="equipment_weight_units" name="unitType" aria-label="Unit Type">
+    <mat-button-toggle selected value="kg" ngDefaultControl>kg</mat-button-toggle>
+    <mat-button-toggle value="lb" ngDefaultControl>lb</mat-button-toggle>
+  </mat-button-toggle-group>
 
   <mat-form-field>
     <mat-label>Notes</mat-label>
