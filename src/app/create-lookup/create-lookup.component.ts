@@ -193,7 +193,7 @@ export class CreateLookupComponent implements OnInit {
         this.model.translations[0].id = object.translations[0].id;
         this.model.translations[1].id = object.translations[1].id;
       }
-      console.log(this.model)
+
       Object.keys(fields).forEach((field) => {
         if (directus_fields.includes(field)) {
           return;

@@ -219,6 +219,8 @@ export class EquipmentFormComponent implements OnInit {
       equipment_weight: [null],
   
       notes: [null],
+      // non-directus
+      equipment_width_units: ["cm"],
     });
 
   }

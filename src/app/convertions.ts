@@ -1,4 +1,17 @@
+const metric = {
+  "m": 100,
+  "cm": 1,
+  "ft": 30.48,
+  "in": 2.54,
+}
+
 export const conversionMap = {
+  "dimensional": {
+    "equipment_width": {
+      "units_key": "equipment_width_units",
+      ...metric
+    }
+  },
   "electrical": {
     "voltage": {
       "units_key": "voltage_units",

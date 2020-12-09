@@ -1,21 +1,19 @@
-<form>
-  <mat-form-field appearance="fill">
-    <mat-label>Lookup</mat-label>
-    <mat-select
-      [disabled]="editingMode"
-      (selectionChange)="onCollectionChange()"
-      [(ngModel)]="selectedCollection"
-      name="collection"
+<mat-form-field appearance="fill">
+  <mat-label>Lookup</mat-label>
+  <mat-select
+    [disabled]="editingMode"
+    (selectionChange)="onCollectionChange()"
+    [(ngModel)]="selectedCollection"
+    name="collection"
+  >
+    <mat-option
+      *ngFor="let collection of collectionNames"
+      [value]="collection.value"
     >
-      <mat-option
-        *ngFor="let collection of collectionNames"
-        [value]="collection.value"
-      >
-        {{ collection.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
+      {{ collection.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
